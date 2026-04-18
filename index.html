@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>LEGACY SKETCH WORKS | Namudoto Clarence</title>
+    <!-- Google Fonts + Smoothing -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf8;   /* soft paper-like background */
+            color: #1e1e1e;
+            scroll-behavior: smooth;
+            line-height: 1.4;
+        }
+
+        /* Modern reset for images & links */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Container system - ETQ inspired generous margins */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Header / Navigation - Minimal, clean, hover line */
+        .site-header {
+            padding: 28px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: #fefcf8;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+            background-color: rgba(254,252,248,0.92);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1e1e1e;
+        }
+
+        .logo p {
+            font-size: 0.75rem;
+            letter-spacing: 0.2px;
+            color: #5e5e5e;
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c2c2c;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 1.5px;
+            background: #000;
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero section - ETQ style large typography + subtle movement */
+        .hero {
+            padding: 100px 0 80px 0;
+            text-align: center;
+        }
+
+        .hero-content h2 {
+            font-size: clamp(2.8rem, 8vw, 5.2rem);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            color: #111;
+        }
+
+        .hero-content .owner-name {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #6f6f6f;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-desc {
+            max-width: 580px;
+            margin: 1.5rem auto 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #3a3a3a;
+        }
+
+        .hero-cta {
+            margin-top: 2.5rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #111;
+            color: white;
+            padding: 12px 32px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            transition: all 0.25s ease;
+            border: 1px solid #111;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: #111;
+        }
+
+        /* Featured gallery grid - minimal, airy, with hover scale */
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 450;
+            letter-spacing: -0.01em;
+            margin: 60px 0 30px 0;
+            border-left: 4px solid #111;
+            padding-left: 20px;
+        }
+
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .art-card {
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        .art-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .art-image {
+            background-color: #f0ede8;
+            overflow: hidden;
+            aspect-ratio: 4 / 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .art-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .art-card:hover .art-image img {
+            transform: scale(1.03);
+        }
+
+        .art-info {
+            margin-top: 18px;
+            text-align: left;
+        }
+
+        .art-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: -0.2px;
+        }
+
+        .art-category {
+            font-size: 0.8rem;
+            color: #6b6b6b;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Studio Story / Owner section - editorial */
+        .studio-story {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin: 80px 0;
+            align-items: center;
+            background: #f9f7f2;
+            padding: 60px 40px;
+            border-radius: 24px;
+        }
+
+        .story-text {
+            flex: 1.2;
+        }
+
+        .story-text h3 {
+            font-size: 2rem;
+            font-weight: 450;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .story-text p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #2d2d2d;
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            font-family: 'Inter', monospace;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: -0.2px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 16px;
+        }
+
+        .story-img {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #e3dfd8;
+            min-height: 360px;
+            background-image: url('https://placehold.co/800x1000/f0ede8/2c2c2c?text=Studio+Portrait');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* custom artwork images (actual art pieces we generate visually with unsplash? but we will use inline SVG? For realism use placeholder + FontAwesome but we need quality. Let's use free stock images but with attribution? I'll use LoremFlick? better: high-quality Unsplash placeholders for art. But to be safe and offline, we embed modern SVG patterns? but client wants actual art representation. I'll use fine art images from unsplash placeholder CDN but with curation. I'll use images that evoke sketch/art */
+        /* CSS-only fallback but we embed real image links to Unsplash + we control theme */
+        /* Add custom style for footer */
+        .footer {
+            margin-top: 100px;
+            border-top: 1px solid #eae6df;
+            padding: 50px 0 40px;
+            font-size: 0.85rem;
+            color: #3d3d3d;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-col p {
+            margin: 8px 0;
+        }
+
+        .footer-col i {
+            width: 24px;
+            margin-right: 6px;
+        }
+
+        .social-links a {
+            margin-right: 20px;
+            font-size: 1.2rem;
+            transition: opacity 0.2s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* Lightbox Modal (ETQ style fullscreen) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .modal-content {
+            max-width: 85vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 1rem;
+            background: rgba(0,0,0,0.5);
+            width: fit-content;
+            margin: 0 auto;
+            padding: 8px 20px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            font-weight: 400;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2.2rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        /* responsive */
+        @media (max-width: 800px) {
+            .container {
+                padding: 0 24px;
+            }
+            .header-inner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .studio-story {
+                flex-direction: column;
+                padding: 40px 24px;
+            }
+            .section-title {
+                margin-top: 30px;
+            }
+            .art-grid {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .hero {
+                padding: 60px 0;
+            }
+            .btn-primary {
+                padding: 10px 24px;
+            }
+        }
+
+        /* CTA banner minimal */
+        .cta-banner {
+            background: #1e1e1e;
+            color: white;
+            padding: 48px 32px;
+            border-radius: 28px;
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+        .cta-banner h3 {
+            font-weight: 450;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .cta-banner .btn-primary {
+            background: white;
+            color: #1e1e1e;
+            border-color: white;
+            margin-top: 16px;
+        }
+        .cta-banner .btn-primary:hover {
+            background: transparent;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <h1>LEGACY SKETCH WORKS</h1>
+            <p>by Namudoto Clarence · atelier of lines & emotion</p>
+        </div>
+        <div class="nav-links">
+            <a href="#works">Works</a>
+            <a href="#studio">Studio</a>
+            <a href="#contact">Contact</a>
+            <a href="#" id="shopLink">Shop</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="owner-name">Namudoto Clarence — Founder & Principal Artist</div>
+            <h2>Where graphite<br>meets soul.</h2>
+            <div class="hero-desc">
+                Raw expression, timeless sketches — each piece carries a narrative. Limited editions & original works.
+            </div>
+            <div class="hero-cta">
+                <a href="#works" class="btn-primary">Discover collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Artworks Grid (modern dynamic pieces) -->
+    <div class="container" id="works">
+        <div class="section-title">Featured works</div>
+        <div class="art-grid" id="artGrid"></div>
+    </div>
+
+    <!-- Studio story / Owner's legacy -->
+    <div class="container" id="studio">
+        <div class="studio-story">
+            <div class="story-text">
+                <h3>Sketching legacy, one line at a time</h3>
+                <p>Namudoto Clarence founded LEGACY SKETCH WORKS after years of honing a distinctive style — minimalist yet profoundly expressive. Based between Kampala and Europe, his works are held in private collections worldwide. Every stroke is deliberate, every sketch a conversation between tradition and contemporary silence.</p>
+                <p>"I draw not what I see, but what lingers beneath the surface. My art is an archive of unspoken stories." — N. Clarence</p>
+                <div class="signature">— Namudoto Clarence, <span id="currentYear"></span></div>
+            </div>
+            <div class="story-img" style="background-image: url('https://images.unsplash.com/photo-1549887534-1541e9326649?w=800&h=1000&fit=crop'); background-size: cover;"></div>
+        </div>
+    </div>
+
+    <!-- CTA Banner: commission / inquiry -->
+    <div class="container">
+        <div class="cta-banner">
+            <h3>Commission a bespoke sketch</h3>
+            <p>Collaborate directly with Namudoto Clarence — unique art for your space.</p>
+            <a href="#contact" class="btn-primary" style="background: white; color:#111;">Inquire now →</a>
+        </div>
+    </div>
+
+    <!-- Contact / footer section -->
+    <footer class="footer container" id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>LEGACY SKETCH WORKS</h4>
+                <p>© <span id="copyYear"></span> — Namudoto Clarence</p>
+                <p>All original artworks are signed & certified.</p>
+            </div>
+            <div class="footer-col">
+                <p><i class="fas fa-map-marker-alt"></i> Studio 12, Art District, Kampala</p>
+                <p><i class="fas fa-envelope"></i> studio@legacysketch.com</p>
+                <p><i class="fas fa-phone-alt"></i> +256 (0) 772 890 123</p>
+            </div>
+            <div class="footer-col social-links">
+                <p>Follow the process</p>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+        <div style="margin-top: 40px; text-align: center; font-size: 0.7rem; opacity: 0.6;">
+            Minimalist philosophy — each sketch, a legacy.
+        </div>
+    </footer>
+</main>
+
+<!-- Lightbox Modal -->
+<div id="imageModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImg" alt="Enlarged artwork">
+    <div id="modalCaption" class="modal-caption"></div>
+</div>
+
+<script>
+    // Art collection data – high quality images (Unsplash curated but art direction: black/white, drawings, sketches)
+    // We will use realistic drawing-like photos that feel like "sketch works". 
+    const artworks = [
+        { title: "Whispers of Silence", category: "Charcoal on paper", imgUrl: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&h=1000&fit=crop", alt: "Abstract charcoal drawing" },
+        { title: "Fragments of Memory", category: "Graphite & Ink", imgUrl: "https://images.unsplash.com/photo-1581287053258-5e2b2d0b1b98?w=800&h=1000&fit=crop", alt: "Expressive portrait sketch" },
+        { title: "Urban Contours", category: "Pencil on archival", imgUrl: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&h=1000&fit=crop", alt: "Abstract line art" },
+        { title: "Ephemeral Gaze", category: "Soft pastel & sketch", imgUrl: "https://images.unsplash.com/photo-1545987796-200677ee1011?w=800&h=1000&fit=crop", alt: "Minimalist face sketch" },
+        { title: "Legacy no. 7", category: "Mixed media", imgUrl: "https://images.unsplash.com/photo-1618202133208-290a5a96852c?w=800&h=1000&fit=crop", alt: "Abstract composition" },
+        { title: "Quiet Dawn", category: "Ink wash", imgUrl: "https://images.unsplash.com/photo-1549887552-2a5c6c74e5e4?w=800&h=1000&fit=crop", alt: "Landscape sketch" }
+    ];
+
+    const artGrid = document.getElementById('artGrid');
+    function renderArtworks() {
+        if(!artGrid) return;
+        artGrid.innerHTML = '';
+        artworks.forEach((art, idx) => {
+            const card = document.createElement('div');
+            card.className = 'art-card';
+            card.setAttribute('data-index', idx);
+            card.innerHTML = `
+                <div class="art-image">
+                    <img src="${art.imgUrl}" alt="${art.alt}" loading="lazy">
+                </div>
+                <div class="art-info">
+                    <div class="art-title">${art.title}</div>
+                    <div class="art-category">${art.category}</div>
+                </div>
+            `;
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openModal(art.imgUrl, `${art.title} — ${art.category}`);
+            });
+            artGrid.appendChild(card);
+        });
+    }
+
+    // Modal functionality
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeModalBtn = document.querySelector('.close-modal');
+
+    function openModal(imgSrc, captionText) {
+        if(modal && modalImg) {
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+            modalCaption.innerText = captionText;
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModalFunc() {
+        if(modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    if(closeModalBtn) closeModalBtn.addEventListener('click', closeModalFunc);
+    if(modal) modal.addEventListener('click', (e) => {
+        if(e.target === modal) closeModalFunc();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && modal && modal.style.display === 'flex') {
+            closeModalFunc();
+        }
+    });
+
+    // shopLink demo alert - modern subtle interaction
+    const shopLink = document.getElementById('shopLink');
+    if(shopLink) {
+        shopLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            // gentle notification
+            const notification = document.createElement('div');
+            notification.innerText = '✨ Store coming soon — exclusive prints & original sketches.';
+            notification.style.position = 'fixed';
+            notification.style.bottom = '30px';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.backgroundColor = '#111';
+            notification.style.color = 'white';
+            notification.style.padding = '12px 24px';
+            notification.style.borderRadius = '40px';
+            notification.style.fontSize = '0.85rem';
+            notification.style.zIndex = '1000';
+            notification.style.fontWeight = '500';
+            notification.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 2500);
+        });
+    }
+
+    // dynamic year
+    const yearSpan = document.getElementById('currentYear');
+    const copySpan = document.getElementById('copyYear');
+    const currentYear = new Date().getFullYear();
+    if(yearSpan) yearSpan.innerText = currentYear;
+    if(copySpan) copySpan.innerText = currentYear;
+
+    // Contact & smooth scroll for internal links
+    const allLinks = document.querySelectorAll('a[href^="#"]');
+    allLinks.forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+            if(targetId && targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // Optional: additional modern interactive cursor effect or just clean load
+    renderArtworks();
+
+    // small hover effect on footer social or nothing extra – but add extra fluidity on load.
+    // add lazy load for images? browser supports native lazy
+    // also add 'Shop' smooth newsletter style, but overall feel modern.
+    // Also enhance hero with dynamic background but keep minimal.
+
+    // Simulate loading with graceful appearance
+    window.addEventListener('load', () => {
+        document.body.style.opacity = '1';
+        // tiny animation for grid items
+        const cards = document.querySelectorAll('.art-card');
+        cards.forEach((card, i) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(12px)';
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, i * 60);
+        });
+    });
+    // pre style opacity reset
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.2s';
+    window.addEventListener('load', () => { document.body.style.opacity = '1'; });
+</script>
+
+</body>
+</html>
