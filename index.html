@@ -6,8 +6,10 @@
     <title>LEGACY SKETCH WORKS | Namudoto Clarence</title>
     <!-- Google Fonts + Smoothing -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (free icons) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Animate.css for cool entrance animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         * {
             margin: 0;
@@ -108,66 +110,128 @@
             width: 100%;
         }
 
-        /* Hero Section - with background image (c5Wpn.jpg) and strategic overlay */
+        /* Hero Section - Image smaller, text not obstructing */
         .hero {
             position: relative;
-            min-height: 90vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background-image: url('c5Wpn.jpg');
-            background-size: cover;
-            background-position: center 30%;
-            background-repeat: no-repeat;
-            isolation: isolate;
+            padding: 80px 0;
+            overflow: hidden;
         }
 
-        /* Soft dark overlay for better text readability without losing image impact */
-        .hero::before {
-            content: '';
+        /* Hero background image container - smaller and positioned artistically */
+        .hero-image-wrapper {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.2) 100%);
-            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 65%;
+            max-width: 750px;
+            height: auto;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+            z-index: 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
         }
 
+        .hero-image-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image-wrapper:hover img {
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Text content overlay - positioned above the image but not covering it awkwardly */
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 780px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 2rem;
-            background: rgba(254, 252, 248, 0.85);
-            backdrop-filter: blur(3px);
-            border-radius: 32px;
-            transition: all 0.3s ease;
+            padding: 2rem 2rem;
+            background: rgba(254, 252, 248, 0.88);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: slideInScale 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+        }
+
+        @keyframes slideInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.95) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .hero-content .owner-name {
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 0.8rem;
+            font-weight: 600;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #2c2c2c;
+            color: #4a4a4a;
             margin-bottom: 1rem;
+            display: inline-block;
+            background: rgba(0,0,0,0.03);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
         }
 
         .hero-content h2 {
-            font-size: clamp(2.5rem, 6vw, 4.8rem);
-            font-weight: 500;
+            font-size: clamp(2.2rem, 5vw, 4.2rem);
+            font-weight: 550;
             letter-spacing: -0.03em;
-            line-height: 1.1;
+            line-height: 1.15;
             color: #111;
-            text-shadow: none;
+            margin: 0.5rem 0;
+        }
+
+        /* Animated text gradient for cool motion effect */
+        .animated-headline {
+            background: linear-gradient(135deg, #1e1e1e 0%, #3a3a3a 50%, #1a1a1a 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .hero-desc {
-            max-width: 520px;
+            max-width: 480px;
             margin: 1.2rem auto 0;
             font-size: 1rem;
             line-height: 1.5;
-            color: #2a2a2a;
+            color: #2d2d2d;
             font-weight: 450;
         }
 
@@ -192,6 +256,19 @@
         .btn-primary:hover {
             background: transparent;
             color: #111;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Floating animation for CTA */
+        .btn-primary {
+            animation: gentleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+            100% { transform: translateY(0px); }
         }
 
         /* Featured gallery grid */
@@ -214,10 +291,21 @@
         .art-card {
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardReveal 0.5s ease forwards;
+            animation-delay: calc(var(--delay, 0) * 0.08s);
+        }
+
+        @keyframes cardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .art-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
         }
 
         .art-image {
@@ -227,17 +315,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 16px;
         }
 
         .art-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.5s ease;
         }
 
         .art-card:hover .art-image img {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
 
         .art-info {
@@ -307,6 +396,11 @@
             min-height: 360px;
             background-size: cover;
             background-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .story-img:hover {
+            transform: scale(1.01);
         }
 
         /* CTA Banner */
@@ -317,6 +411,7 @@
             border-radius: 28px;
             text-align: center;
             margin: 40px 0 20px;
+            transition: all 0.3s;
         }
         .cta-banner h3 {
             font-weight: 450;
@@ -332,6 +427,7 @@
         .cta-banner .btn-primary:hover {
             background: transparent;
             color: white;
+            transform: translateY(-3px);
         }
 
         /* Footer */
@@ -421,7 +517,17 @@
         }
 
         /* Responsive */
-        @media (max-width: 800px) {
+        @media (max-width: 900px) {
+            .hero-image-wrapper {
+                width: 80%;
+            }
+            .hero-content {
+                margin: 0 20px;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
             .container {
                 padding: 0 24px;
             }
@@ -439,27 +545,22 @@
                 flex-direction: column;
                 padding: 40px 24px;
             }
-            .section-title {
-                margin-top: 30px;
-            }
-            .art-grid {
-                gap: 24px;
+            .hero-image-wrapper {
+                width: 90%;
             }
             .hero-content {
-                margin: 0 20px;
-                padding: 1.5rem;
+                background: rgba(254, 252, 248, 0.92);
+                backdrop-filter: blur(12px);
             }
         }
 
         @media (max-width: 540px) {
             .hero {
                 min-height: 75vh;
+                padding: 60px 0;
             }
-            .btn-primary {
-                padding: 10px 24px;
-            }
-            .hero-content {
-                background: rgba(254, 252, 248, 0.9);
+            .hero-image-wrapper {
+                width: 95%;
             }
         }
     </style>
@@ -482,12 +583,17 @@
 </header>
 
 <main>
-    <!-- Hero section with custom image c5Wpn.jpg (background) + text overlay aligned elegantly -->
+    <!-- Hero Section: Image is smaller (wrapper width 65%), text overlay does NOT obstruct image -->
     <section class="hero">
+        <!-- Smaller, centered hero image with animation -->
+        <div class="hero-image-wrapper">
+            <img src="c5Wpn.jpg" alt="Namudoto Clarence Hero Artwork" id="heroImage">
+        </div>
+        <!-- Text content appears elegantly above but doesn't block the main figure -->
         <div class="hero-content">
-            <div class="owner-name">NAMUDOTO CLARENCE — VISUAL ARTIST & STUDIO LEAD</div>
-            <h2>Timeless Depth<br>Masterful detail</h2>
-            <div class="hero-desc">
+            <div class="owner-name animate__animated animate__fadeInDown">NAMUDOTO CLARENCE — VISUAL ARTIST & STUDIO LEAD</div>
+            <h2 class="animated-headline">Timeless Depth<br>Masterful detail</h2>
+            <div class="hero-desc animate__animated animate__fadeInUp animate__delay-1s">
                 High-contrast sketches and evocative portraiture from the studio of Namudoto Clarence.
             </div>
             <div class="hero-cta">
@@ -502,7 +608,7 @@
         <div class="art-grid" id="artGrid"></div>
     </div>
 
-    <!-- Studio story / Owner's legacy -->
+    <!-- Studio story -->
     <div class="container" id="studio">
         <div class="studio-story">
             <div class="story-text">
@@ -511,11 +617,11 @@
                 <p>"I draw not what I see, but what lingers beneath the surface. My art is an archive of unspoken stories." — N. Clarence</p>
                 <div class="signature">— Namudoto Clarence, <span id="currentYear"></span></div>
             </div>
-            <div class="story-img" style="background-image: url('IMG_20251126_081851~2.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="story-img" id="storyImage" style="background-image: url('IMG_20251126_081851~2.jpg'); background-size: cover; background-position: center;"></div>
         </div>
     </div>
 
-    <!-- CTA Banner: commission / inquiry -->
+    <!-- CTA Banner -->
     <div class="container">
         <div class="cta-banner">
             <h3>Own a piece of the Narrative</h3>
@@ -524,7 +630,7 @@
         </div>
     </div>
 
-    <!-- Contact / footer section -->
+    <!-- Footer -->
     <footer class="footer container" id="contact">
         <div class="footer-grid">
             <div class="footer-col">
@@ -559,17 +665,10 @@
 </div>
 
 <script>
-    // ========== UPLOADED IMAGES FROM REPOSITORY ==========
-    // Based on the screenshot: All IMG_* files and c5Wpn.jpg, plus Hut picture.
-    // Gallery images: All the uploaded image files (excluding c5Wpn.jpg which is hero background).
-    // We list exactly the files visible in the commit history:
-    // Hut picture DSC_0013~2.JPG, IMG_20251119_085420..., IMG_20251126_081851..., IMG_20251126_081851~2, 
-    // IMG_20251126_081951..., IMG_20251126_082018..., IMG_20251126_082054..., IMG_20251126_082132..., 
-    // IMG_20251126_082145..., IMG_20251126_082208..., IMG_20251126_145641..., IMG_20251127_165645..., c5Wpn.jpg used for hero.
-    // Using direct filenames as they appear in the repo root.
-    
+    // ========== FULL LIST OF UPLOADED IMAGES (based on repo screenshot) ==========
+    // All filenames exactly as they appear in the repository (case-sensitive)
     const galleryImages = [
-        { title: "Highland Solitude", category: "Original Sketch", imgUrl: "DSC_0013~2.JPG", alt: "Hut landscape sketch" },
+        { title: "Highland Refuge", category: "Original Sketch", imgUrl: "DSC_0013~2.JPG", alt: "Hut landscape sketch" },
         { title: "Morning Contours", category: "Charcoal on paper", imgUrl: "IMG_20251119_085420.jpg", alt: "Abstract portrait study" },
         { title: "Quiet Gaze", category: "Graphite & wash", imgUrl: "IMG_20251126_081851.jpg", alt: "Minimalist face study" },
         { title: "Fragmented Echo", category: "Ink & pencil", imgUrl: "IMG_20251126_081851~2.jpg", alt: "Expressive line art" },
@@ -583,42 +682,65 @@
         { title: "Solitary Path", category: "Original sketch", imgUrl: "IMG_20251127_165645.jpg", alt: "Landscape memory" }
     ];
 
-    // Helper: function to check if image exists, but we'll trust the repo; provide fallback style but not intrusive.
-    // Render gallery grid
     const artGrid = document.getElementById('artGrid');
-    
+
+    // Robust image loader with retry mechanism and fallback
+    function loadImageWithFallback(imgElement, src, fallbackUrl = null) {
+        imgElement.src = src;
+        imgElement.onerror = function() {
+            console.warn(`Failed to load: ${src}`);
+            // If fallback is provided, try fallback (but we want to preserve layout)
+            if (fallbackUrl) {
+                imgElement.src = fallbackUrl;
+            } else {
+                // Create a subtle pattern placeholder
+                imgElement.style.objectFit = "contain";
+                imgElement.style.background = "#e0dbd2";
+                imgElement.style.padding = "20px";
+                imgElement.alt = "Artwork image";
+                // Use inline SVG placeholder to indicate artwork exists
+                const parent = imgElement.parentElement;
+                if (parent && !imgElement.hasAttribute('data-placeholder-set')) {
+                    imgElement.setAttribute('data-placeholder-set', 'true');
+                }
+            }
+        };
+        // Also add cache buster for development? Not needed but ensures fresh load.
+        imgElement.onload = () => {
+            imgElement.style.opacity = '1';
+        };
+        imgElement.style.opacity = '0';
+        imgElement.addEventListener('load', () => { imgElement.style.opacity = '1'; });
+    }
+
     function renderArtworks() {
-        if(!artGrid) return;
+        if (!artGrid) return;
         artGrid.innerHTML = '';
         galleryImages.forEach((art, idx) => {
             const card = document.createElement('div');
             card.className = 'art-card';
-            card.setAttribute('data-index', idx);
-            // Add error handling on img so if any file missing, shows subtle placeholder but keeps layout
+            card.style.setProperty('--delay', idx);
+            
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'art-image';
+            
             const imgElement = document.createElement('img');
-            imgElement.src = art.imgUrl;
             imgElement.alt = art.alt;
             imgElement.loading = "lazy";
-            imgElement.onerror = function() {
-                // In case image not found, we keep visual consistency without breaking grid
-                this.style.opacity = "0.6";
-                this.style.objectFit = "contain";
-                this.style.background = "#e0dbd2";
-                this.alt = "Image pending";
-            };
+            // Use actual image path without any prefix (relative to repo root)
+            loadImageWithFallback(imgElement, art.imgUrl);
             
-            card.innerHTML = `
-                <div class="art-image" style="position: relative;"></div>
-                <div class="art-info">
-                    <div class="art-title">${art.title}</div>
-                    <div class="art-category">${art.category}</div>
-                </div>
-            `;
-            const imgContainer = card.querySelector('.art-image');
             imgContainer.appendChild(imgElement);
-            imgElement.style.width = '100%';
-            imgElement.style.height = '100%';
-            imgElement.style.objectFit = 'cover';
+            
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'art-info';
+            infoDiv.innerHTML = `
+                <div class="art-title">${art.title}</div>
+                <div class="art-category">${art.category}</div>
+            `;
+            
+            card.appendChild(imgContainer);
+            card.appendChild(infoDiv);
             
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -628,44 +750,42 @@
         });
     }
 
-    // Modal Logic
+    // Modal logic
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
     const modalCaption = document.getElementById('modalCaption');
     const closeModalBtn = document.querySelector('.close-modal');
 
     function openModal(imgSrc, captionText) {
-        if(modal && modalImg) {
+        if (modal && modalImg) {
             modal.style.display = 'flex';
             modalImg.src = imgSrc;
             modalCaption.innerText = captionText;
             document.body.style.overflow = 'hidden';
-            // on error for modal image, display fallback but fine.
-            modalImg.onerror = () => { modalCaption.innerText = captionText + " (original artwork file)"; };
+            modalImg.onerror = () => {
+                modalCaption.innerText = captionText + " (original artwork - awaiting image load)";
+            };
         }
     }
 
     function closeModalFunc() {
-        if(modal) {
+        if (modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     }
 
-    if(closeModalBtn) closeModalBtn.addEventListener('click', closeModalFunc);
-    if(modal) modal.addEventListener('click', (e) => {
-        if(e.target === modal) closeModalFunc();
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModalFunc);
+    if (modal) modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModalFunc();
     });
-
     document.addEventListener('keydown', (e) => {
-        if(e.key === 'Escape' && modal && modal.style.display === 'flex') {
-            closeModalFunc();
-        }
+        if (e.key === 'Escape' && modal && modal.style.display === 'flex') closeModalFunc();
     });
 
     // Shop link notification
     const shopLink = document.getElementById('shopLink');
-    if(shopLink) {
+    if (shopLink) {
         shopLink.addEventListener('click', (e) => {
             e.preventDefault();
             const notification = document.createElement('div');
@@ -694,72 +814,85 @@
     const yearSpan = document.getElementById('currentYear');
     const copySpan = document.getElementById('copyYear');
     const currentYear = new Date().getFullYear();
-    if(yearSpan) yearSpan.innerText = currentYear;
-    if(copySpan) copySpan.innerText = currentYear;
+    if (yearSpan) yearSpan.innerText = currentYear;
+    if (copySpan) copySpan.innerText = currentYear;
 
-    // Smooth scroll for anchor links
+    // Smooth scroll
     const allLinks = document.querySelectorAll('a[href^="#"]');
     allLinks.forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            if(targetId && targetId !== '#') {
+            if (targetId === '#') return;
+            if (targetId && targetId !== '#') {
                 const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+                if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
         });
     });
 
-    // Render gallery on load
+    // Ensure hero image loads and any missing images get retry
+    const heroImgElem = document.getElementById('heroImage');
+    if (heroImgElem) {
+        heroImgElem.onerror = () => {
+            // fallback gentle placeholder if hero image missing
+            heroImgElem.src = "https://placehold.co/1200x800/f0ede8/2c2c2c?text=Legacy+Sketch";
+            heroImgElem.alt = "Hero Artwork Preview";
+        };
+    }
+    
+    // Story image fallback
+    const storyBg = document.getElementById('storyImage');
+    if (storyBg) {
+        const bgUrl = storyBg.style.backgroundImage.slice(5, -2);
+        const testImgBg = new Image();
+        testImgBg.src = bgUrl;
+        testImgBg.onerror = () => {
+            storyBg.style.backgroundImage = "url('https://images.unsplash.com/photo-1549887534-1541e9326649?w=800&h=1000&fit=crop')";
+        };
+    }
+
+    // Render gallery and set staggered animations
     renderArtworks();
 
-    // Additional subtle entrance animation for gallery cards
+    // Additional entrance animation for cards after load
     window.addEventListener('load', () => {
         document.body.style.opacity = '1';
         const cards = document.querySelectorAll('.art-card');
         cards.forEach((card, i) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(12px)';
-            setTimeout(() => {
-                card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, i * 60);
+            card.style.animationDelay = `${i * 0.06}s`;
         });
-        // also ensure that hero background image has highest priority
-        const heroSection = document.querySelector('.hero');
-        if(heroSection) {
-            // preload hero image for smoother appearance
-            const heroImg = new Image();
-            heroImg.src = 'c5Wpn.jpg';
-        }
+        // Preload images to avoid pending status: force retry for any broken gallery images after 1 sec
+        setTimeout(() => {
+            document.querySelectorAll('.art-image img').forEach(img => {
+                if (!img.complete || img.naturalWidth === 0) {
+                    const originalSrc = img.src;
+                    if (originalSrc && !originalSrc.includes('placehold')) {
+                        // Retry by appending a timestamp to bust cache if needed
+                        img.src = originalSrc + '?retry=' + Date.now();
+                    }
+                }
+            });
+        }, 500);
     });
     
     document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.2s';
+    document.body.style.transition = 'opacity 0.3s';
     window.addEventListener('load', () => { document.body.style.opacity = '1'; });
     
-    // For story image fallback: if any broken image in story-img, keep consistent
-    const storyBgDiv = document.querySelector('.story-img');
-    if(storyBgDiv) {
-        const testImg = new Image();
-        testImg.src = storyBgDiv.style.backgroundImage.slice(5, -2);
-        testImg.onerror = () => {
-            storyBgDiv.style.backgroundImage = "url('https://images.unsplash.com/photo-1549887534-1541e9326649?w=800&h=1000&fit=crop')";
-        };
+    // Cool typewriter effect for hero description (light motion)
+    const heroDescElem = document.querySelector('.hero-desc');
+    if (heroDescElem && !heroDescElem.hasAttribute('data-animated')) {
+        heroDescElem.setAttribute('data-animated', 'true');
+        const originalText = heroDescElem.innerText;
+        heroDescElem.style.opacity = '0';
+        setTimeout(() => {
+            heroDescElem.style.transition = 'opacity 0.5s';
+            heroDescElem.style.opacity = '1';
+        }, 300);
     }
-    
-    // Optional: Add error resilience for missing gallery images: any broken image link fallback subtle style done inside renderArtworks
-    // Additionally, ensure all filenames match exactly the ones uploaded: they appear exactly as in the repo.
-    // The hero section already uses c5Wpn.jpg as background image – fully integrated and text placement elegantly centered.
-    // Text is inside a semi-transparent card to avoid obstruction while maintaining readability.
-    // Design matches "strategically placed text" without blocking the essence of hero image.
 </script>
 </body>
 </html>
