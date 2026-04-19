@@ -130,7 +130,6 @@
             transform-origin: center center;
         }
 
-        /* Faster zoom effect */
         @keyframes fastZoom {
             0% { transform: scale(1); }
             40% { transform: scale(1.05); }
@@ -750,11 +749,6 @@
             color: #777;
         }
 
-        /* Contact Highlight (for when scrolling to contact) */
-        .contact-highlight {
-            transition: all 0.3s ease;
-        }
-
         /* Modal */
         .modal {
             display: none;
@@ -848,7 +842,7 @@
     <section class="artist-statement" data-aos="fade-up">
         <div class="statement-container">
             <div class="owner-name">NAMUDOTO CLARENCE — VISUAL ARTIST & STUDIO LEAD</div>
-            <h2>Art That<br>Speaks Volumes</h2>
+            <h2>Where Culture Meets Emotion</h2>
             <div class="hero-desc">
                 High-contrast sketches and evocative portraiture from the studio of Namudoto Clarence.
             </div>
@@ -857,7 +851,7 @@
     </section>
 
     <div class="container" id="works">
-        <div class="section-title" data-aos="fade-right">FINISHED ART PIECES FOR SALE</div>
+        <div class="section-title" data-aos="fade-right">Finished pieces for sale</div>
         <div class="art-grid" id="artGrid"></div>
     </div>
 
@@ -902,13 +896,13 @@
                 <div class="testimonial-card" data-aos="flip-left" data-aos-delay="200">
                     <div class="stars">★★★★★</div>
                     <div class="testimonial-text">"The attention to detail and the way light plays across the sketches is incredible. I've bought three pieces and each tells its own story."</div>
-                    <div class="testimonial-author">— James K., Mbale</div>
+                    <div class="testimonial-author">— James K., Nairobi</div>
                     <div class="testimonial-title">Collector</div>
                 </div>
                 <div class="testimonial-card" data-aos="flip-left" data-aos-delay="300">
                     <div class="stars">★★★★★</div>
                     <div class="testimonial-text">"Working with Clarence was seamless. He listened to my ideas and created something far beyond my expectations."</div>
-                    <div class="testimonial-author">— Amina D., seeta</div>
+                    <div class="testimonial-author">— Amina D., London</div>
                     <div class="testimonial-title">Custom Illustration</div>
                 </div>
             </div>
@@ -921,15 +915,15 @@
             <div class="faq-grid">
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="100">
                     <div class="faq-question">How long does a commissioned piece take? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Typical turnaround time is 3-5 days depending on complexity and size. Rush orders may be available for an additional fee.</div>
+                    <div class="faq-answer">Typical turnaround time is 2-4 weeks depending on complexity and size. Rush orders may be available for an additional fee.</div>
                 </div>
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="150">
                     <div class="faq-question">What are your price ranges? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Original sketches start at shs.100,000, detailed portraits from shs.150,000, and large-scale works vary. Contact me for a personalized quote.</div>
+                    <div class="faq-answer">Original sketches start at $200, detailed portraits from $450, and large-scale works vary. Contact me for a personalized quote.</div>
                 </div>
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="200">
                     <div class="faq-question">Do you ship internationally? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Not yet, join my WhatsApp or send me an email for further information</div>
+                    <div class="faq-answer">Yes, I ship worldwide. Shipping costs vary by location, and each piece is carefully packaged with tracking and insurance.</div>
                 </div>
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="250">
                     <div class="faq-question">Can I request revisions? <i class="fas fa-chevron-down"></i></div>
@@ -1022,18 +1016,19 @@
 <script>
     AOS.init({ duration: 800, once: true, offset: 100 });
 
+    // Gallery Images - Renamed to SKETCH-01, SKETCH-02, etc.
     const galleryImages = [
-        { title: "Morning Contours", category: "Charcoal on paper", imgUrl: "IMG_20251119_085420_677.jpg", alt: "Abstract portrait study" },
-        { title: "Quiet Gaze", category: "Graphite & wash", imgUrl: "IMG_20251126_081851_683~2.jpg", alt: "Minimalist face study" },
-        { title: "Fragmented Echo", category: "Ink & pencil", imgUrl: "IMG_20251126_081851_683~3.jpg", alt: "Expressive line art" },
-        { title: "Veiled Thoughts", category: "Soft charcoal", imgUrl: "IMG_20251126_081951_644.jpg", alt: "Deep contrast portrait" },
-        { title: "Layered Silence", category: "Mixed media", imgUrl: "IMG_20251126_082018_134~3.jpg", alt: "Abstract composition" },
-        { title: "Ephemeral Presence", category: "Pencil on archival", imgUrl: "IMG_20251126_082054_000.jpg", alt: "Detailed figure study" },
-        { title: "Shadow Memory", category: "Charcoal & chalk", imgUrl: "IMG_20251126_082132_404~3.jpg", alt: "Dramatic portrait" },
-        { title: "Dawn Ritual", category: "Ink wash", imgUrl: "IMG_20251126_082145_313.jpg", alt: "Expressive marks" },
-        { title: "Unspoken Diaries", category: "Graphite drawing", imgUrl: "IMG_20251126_082208_469~3.jpg", alt: "Narrative sketch" },
-        { title: "Twilight Archive", category: "Mixed media on paper", imgUrl: "IMG_20251126_145641_254.jpg", alt: "Dreamlike abstraction" },
-        { title: "Solitary Path", category: "Original sketch", imgUrl: "IMG_20251127_165645_069~2.jpg", alt: "Landscape memory" }
+        { title: "SKETCH-01", category: "Charcoal on paper", imgUrl: "IMG_20251119_085420_677.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-02", category: "Graphite & wash", imgUrl: "IMG_20251126_081851_683~2.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-03", category: "Ink & pencil", imgUrl: "IMG_20251126_081851_683~3.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-04", category: "Soft charcoal", imgUrl: "IMG_20251126_081951_644.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-05", category: "Mixed media", imgUrl: "IMG_20251126_082018_134~3.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-06", category: "Pencil on archival", imgUrl: "IMG_20251126_082054_000.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-07", category: "Charcoal & chalk", imgUrl: "IMG_20251126_082132_404~3.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-08", category: "Ink wash", imgUrl: "IMG_20251126_082145_313.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-09", category: "Graphite drawing", imgUrl: "IMG_20251126_082208_469~3.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-10", category: "Mixed media on paper", imgUrl: "IMG_20251126_145641_254.jpg", alt: "Original sketch artwork" },
+        { title: "SKETCH-11", category: "Original sketch", imgUrl: "IMG_20251127_165645_069~2.jpg", alt: "Original sketch artwork" }
     ];
 
     const artGrid = document.getElementById('artGrid');
@@ -1079,7 +1074,7 @@
     });
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // FIXED: Start Conversation Button - Scrolls to Contact Footer
+    // Start Conversation Button - Scrolls to Contact Footer
     const startConversationBtn = document.getElementById('startConversationBtn');
     if (startConversationBtn) {
         startConversationBtn.addEventListener('click', function(e) {
@@ -1087,7 +1082,6 @@
             const contactSection = document.getElementById('contact');
             if (contactSection) {
                 contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Optional: Add a subtle highlight effect
                 contactSection.style.transition = 'all 0.3s ease';
                 contactSection.style.boxShadow = '0 0 0 3px #25D366';
                 setTimeout(() => {
