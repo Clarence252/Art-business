@@ -6,6 +6,8 @@
     <title>LEGACY SKETCH WORKS | Namudoto Clarence</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS Library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,6 +21,7 @@
             color: #1e1e1e;
             scroll-behavior: smooth;
             line-height: 1.4;
+            overflow-x: hidden;
         }
 
         a {
@@ -38,6 +41,7 @@
             padding: 0 32px;
         }
 
+        /* Header / Navigation */
         .site-header {
             padding: 20px 0;
             border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -105,6 +109,7 @@
             width: 100%;
         }
 
+        /* Hero Section */
         .hero {
             width: 100%;
             background: #f5f2ed;
@@ -117,65 +122,68 @@
             display: block;
         }
 
+        /* WhatsApp Button - Larger, Not Too Much in Corner */
         .whatsapp-float {
             position: absolute;
-            top: 24px;
-            right: 24px;
+            top: 30px;
+            right: 40px;
             z-index: 10;
             background-color: #25D366;
-            border-radius: 50%;
-            width: 56px;
-            height: 56px;
+            border-radius: 60px;
+            width: 64px;
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             animation: pulse 2s infinite;
         }
 
         .whatsapp-float:hover {
-            transform: scale(1.08);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
         }
 
         .whatsapp-float i {
-            font-size: 32px;
+            font-size: 36px;
             color: white;
         }
 
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-            70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
         .whatsapp-float::before {
             content: "Chat on WhatsApp";
             position: absolute;
-            right: 70px;
+            right: 80px;
             top: 50%;
             transform: translateY(-50%);
             background: #1a1a1a;
             color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.75rem;
             font-weight: 500;
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
             transition: all 0.2s ease;
             pointer-events: none;
+            font-family: 'Inter', sans-serif;
         }
 
         .whatsapp-float:hover::before {
             opacity: 1;
             visibility: visible;
-            right: 75px;
+            right: 85px;
         }
 
+        /* Artist Statement Section */
         .artist-statement {
             background: linear-gradient(135deg, #f5f2ed 0%, #ede8e0 100%);
             padding: 80px 0;
@@ -236,6 +244,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
+        /* Gallery Section */
         .section-title {
             font-size: 1.7rem;
             font-weight: 450;
@@ -306,15 +315,182 @@
             letter-spacing: 1px;
         }
 
+        /* Commission Process Section */
+        .process-section {
+            background: #f9f7f2;
+            padding: 70px 0;
+            margin: 40px 0;
+            border-radius: 28px;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-8px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #1a1a1a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0 auto 20px auto;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            background: #25D366;
+            transform: scale(1.05);
+        }
+
+        .process-step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .process-step p {
+            color: #5a5a5a;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 70px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f0ede8;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #2d2d2d;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .testimonial-title {
+            font-size: 0.8rem;
+            color: #6b6b6b;
+            margin-top: 4px;
+        }
+
+        .stars {
+            color: #f5b042;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #f9f7f2;
+            padding: 70px 0;
+            margin: 40px 0;
+            border-radius: 28px;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #f5f2ed;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #5a5a5a;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 24px 20px 24px;
+            max-height: 200px;
+        }
+
+        /* Studio Story */
         .studio-story {
             display: flex;
             flex-wrap: wrap;
             gap: 50px;
             margin: 80px 0;
             align-items: center;
-            background: #f9f7f2;
+            background: #fff;
             padding: 60px 40px;
             border-radius: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
         .story-text {
@@ -356,6 +532,11 @@
             transition: transform 0.3s ease;
         }
 
+        .story-img:hover {
+            transform: scale(1.01);
+        }
+
+        /* CTA Banner */
         .cta-banner {
             background: #1a1a1a;
             color: white;
@@ -371,40 +552,79 @@
             margin-bottom: 12px;
         }
 
+        /* Footer - Enhanced */
         .footer {
             margin-top: 100px;
-            border-top: 1px solid #eae6df;
-            padding: 50px 0 40px;
-            font-size: 0.85rem;
-            color: #3d3d3d;
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 30px;
+            border-top: none;
         }
 
         .footer-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 40px;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         .footer-col p {
-            margin: 8px 0;
+            margin: 10px 0;
+            font-size: 0.85rem;
+            color: #aaa;
         }
 
         .footer-col i {
-            width: 24px;
-            margin-right: 6px;
+            width: 28px;
+            margin-right: 8px;
+            color: #25D366;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
         }
 
         .social-links a {
-            margin-right: 20px;
-            font-size: 1.2rem;
-            transition: opacity 0.2s;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            opacity: 0.6;
+            background: #25D366;
+            transform: translateY(-3px);
         }
 
+        .social-links a i {
+            margin: 0;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.75rem;
+            color: #777;
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -451,22 +671,19 @@
             cursor: pointer;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .container { padding: 0 24px; }
             .header-inner { flex-direction: column; align-items: center; text-align: center; }
             .nav-links { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
             .studio-story { flex-direction: column; padding: 40px 24px; }
-            .whatsapp-float { width: 48px; height: 48px; top: 16px; right: 16px; }
-            .whatsapp-float i { font-size: 26px; }
+            .whatsapp-float { width: 54px; height: 54px; top: 16px; right: 16px; }
+            .whatsapp-float i { font-size: 30px; }
             .whatsapp-float::before { display: none; }
-        }
-
-        @media (max-width: 540px) {
-            .artist-statement { padding: 50px 0; }
-            .statement-container h2 { font-size: 1.8rem; }
-            .whatsapp-float { width: 44px; height: 44px; top: 12px; right: 12px; }
-            .whatsapp-float i { font-size: 24px; }
-            .art-grid { grid-template-columns: 1fr; gap: 30px; }
+            .process-grid { grid-template-columns: 1fr; gap: 30px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-grid { flex-direction: column; text-align: center; }
+            .social-links { justify-content: center; }
         }
     </style>
 </head>
@@ -480,7 +697,9 @@
         </div>
         <div class="nav-links">
             <a href="#works">Works</a>
-            <a href="#studio">Studio</a>
+            <a href="#process">Process</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
             <a href="#" id="shopLink">Shop</a>
         </div>
@@ -495,7 +714,7 @@
         <img src="c5Wpn.jpg" alt="Legacy Sketch Works" class="hero-image" id="heroMainImg">
     </section>
 
-    <section class="artist-statement">
+    <section class="artist-statement" data-aos="fade-up">
         <div class="statement-container">
             <div class="owner-name">NAMUDOTO CLARENCE — VISUAL ARTIST & STUDIO LEAD</div>
             <h2>Timeless Depth<br>Masterful detail</h2>
@@ -506,13 +725,104 @@
         </div>
     </section>
 
+    <!-- Gallery Section (Hut picture removed) -->
     <div class="container" id="works">
-        <div class="section-title">Finished pieces for sale</div>
+        <div class="section-title" data-aos="fade-right">Finished pieces for sale</div>
         <div class="art-grid" id="artGrid"></div>
     </div>
 
+    <!-- Commission Process Section -->
+    <div class="container" id="process">
+        <div class="process-section" data-aos="fade-up">
+            <div class="section-title" style="border-left-color: #25D366;">How to Commission a Piece</div>
+            <div class="process-grid">
+                <div class="process-step" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h4>Inquiry</h4>
+                    <p>Reach out via WhatsApp or email to discuss your vision, size preferences, and timeline.</p>
+                </div>
+                <div class="process-step" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h4>Consultation</h4>
+                    <p>We'll have a detailed conversation about references, mood, and artistic direction.</p>
+                </div>
+                <div class="process-step" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h4>Initial Sketch</h4>
+                    <p>You'll receive a digital sketch for feedback and approval before final execution.</p>
+                </div>
+                <div class="process-step" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <h4>Final Artwork</h4>
+                    <p>I bring your vision to life with meticulous detail, then ship it safely to you.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="container" id="testimonials">
+        <div class="testimonials-section" data-aos="fade-up">
+            <div class="section-title">What Collectors Say</div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">"Clarence captured my mother's essence in a way photographs never could. The depth and emotion in the charcoal work is breathtaking. Truly a masterpiece."</div>
+                    <div class="testimonial-author">— Sarah M., Kampala</div>
+                    <div class="testimonial-title">Commissioned Portrait</div>
+                </div>
+                <div class="testimonial-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">"The attention to detail and the way light plays across the sketches is incredible. I've bought three pieces and each one tells its own story."</div>
+                    <div class="testimonial-author">— James K., Nairobi</div>
+                    <div class="testimonial-title">Collector</div>
+                </div>
+                <div class="testimonial-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">"Working with Clarence was seamless. He listened to my ideas and created something far beyond my expectations. Will definitely commission again."</div>
+                    <div class="testimonial-author">— Amina D., London</div>
+                    <div class="testimonial-title">Custom Illustration</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="container" id="faq">
+        <div class="faq-section" data-aos="fade-up">
+            <div class="section-title" style="border-left-color: #25D366;">Frequently Asked Questions</div>
+            <div class="faq-grid">
+                <div class="faq-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="faq-question">
+                        How long does a commissioned piece take? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">Typical turnaround time is 2-4 weeks depending on complexity and size. Rush orders may be available for an additional fee.</div>
+                </div>
+                <div class="faq-item" data-aos="fade-right" data-aos-delay="150">
+                    <div class="faq-question">
+                        What are your price ranges? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">Original sketches start at $200, detailed portraits from $450, and large-scale works vary. Contact me for a personalized quote based on your needs.</div>
+                </div>
+                <div class="faq-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="faq-question">
+                        Do you ship internationally? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">Yes, I ship worldwide. Shipping costs vary by location, and each piece is carefully packaged with tracking and insurance.</div>
+                </div>
+                <div class="faq-item" data-aos="fade-right" data-aos-delay="250">
+                    <div class="faq-question">
+                        Can I request revisions? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">Absolutely. You'll receive a digital sketch for approval, and I offer up to two rounds of revisions to ensure you're completely satisfied.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Studio Story -->
     <div class="container" id="studio">
-        <div class="studio-story">
+        <div class="studio-story" data-aos="fade-up">
             <div class="story-text">
                 <h3>Art of Intentionality</h3>
                 <p>Namudoto Clarence explores the space between minimalist form and profound emotional depth. Based between Kampala and Europe, his work is defined by a deliberate, high-contrast aesthetic that captures what remains unseen. Each piece is an archive of a moment—crafted for those who value art that speaks in the silence.</p>
@@ -523,36 +833,46 @@
         </div>
     </div>
 
+    <!-- CTA Banner -->
     <div class="container">
-        <div class="cta-banner">
+        <div class="cta-banner" data-aos="zoom-in">
             <h3>Own a piece of the Narrative</h3>
             <p>Bring a vision to life through a direct collaboration. Currently accepting inquiries for custom portraits and original wall-scale works.</p>
             <a href="#contact" class="btn-primary" style="background: white; color:#1a1a1a;">Start a Conversation →</a>
         </div>
     </div>
 
-    <footer class="footer container" id="contact">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>LEGACY SKETCH WORKS</h4>
-                <p>© <span id="copyYear"></span> — Namudoto Clarence</p>
-                <p>All original artworks are signed & certified.</p>
+    <!-- Enhanced Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>LEGACY SKETCH WORKS</h4>
+                    <p>by Namudoto Clarence</p>
+                    <p>All original artworks are signed & certified.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Seeta, Kampala, Uganda</p>
+                    <p><i class="fas fa-envelope"></i> clarencekylex484@gmail.com</p>
+                    <p><i class="fas fa-phone-alt"></i> +256 705 341 715</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Studio Hours</h4>
+                    <p>Monday - Friday: 9am - 6pm</p>
+                    <p>Saturday: 10am - 4pm</p>
+                    <p>Sunday: Closed</p>
+                </div>
             </div>
-            <div class="footer-col">
-                <p><i class="fas fa-map-marker-alt"></i> seeta Kampala U</p>
-                <p><i class="fas fa-envelope"></i> clarencekylex484@gmail.com</p>
-                <p><i class="fas fa-phone-alt"></i> +256 705341715</p>
+            <div class="footer-bottom">
+                <p>© <span id="copyYear"></span> LEGACY SKETCH WORKS — Minimalist philosophy, each Art piece a legacy.</p>
             </div>
-            <div class="footer-col social-links">
-                <p>Social Platforms</p>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
-            </div>
-        </div>
-        <div style="margin-top: 40px; text-align: center; font-size: 0.7rem; opacity: 0.6;">
-            Minimalist philosophy — each Art piece, a legacy.
         </div>
     </footer>
 </main>
@@ -563,13 +883,17 @@
     <div id="modalCaption" class="modal-caption"></div>
 </div>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // ============================================================
-    // YOUR ACTUAL FILENAMES FROM THE SCREENSHOT
-    // These are the EXACT names as they appear in your repository
-    // ============================================================
+    // Initialize AOS for scroll animations
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+
+    // Gallery Images (Hut picture removed)
     const galleryImages = [
-        { title: "Hut Picture", category: "Original Sketch", imgUrl: "Hut picture", alt: "Hut landscape sketch" },
         { title: "Morning Contours", category: "Charcoal on paper", imgUrl: "IMG_20251119_085420_677.jpg", alt: "Abstract portrait study" },
         { title: "Quiet Gaze", category: "Graphite & wash", imgUrl: "IMG_20251126_081851_683~2.jpg", alt: "Minimalist face study" },
         { title: "Fragmented Echo", category: "Ink & pencil", imgUrl: "IMG_20251126_081851_683~3.jpg", alt: "Expressive line art" },
@@ -588,147 +912,45 @@
     function renderArtworks() {
         if (!artGrid) return;
         artGrid.innerHTML = '';
-        
         galleryImages.forEach((art, idx) => {
             const card = document.createElement('div');
             card.className = 'art-card';
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-delay', idx * 50);
             
             const imgContainer = document.createElement('div');
             imgContainer.className = 'art-image';
-            
             const imgElement = document.createElement('img');
             imgElement.alt = art.alt;
             imgElement.loading = "lazy";
             imgElement.src = art.imgUrl;
-            
-            imgElement.onerror = function() {
-                console.log(`Failed to load: ${art.imgUrl}`);
-                this.style.background = "#e8e4dd";
-                this.style.padding = "40px";
-                this.style.objectFit = "contain";
-                this.alt = "Artwork image";
-            };
-            
+            imgElement.onerror = function() { this.style.background = "#e8e4dd"; this.style.padding = "40px"; };
             imgContainer.appendChild(imgElement);
             
             const infoDiv = document.createElement('div');
             infoDiv.className = 'art-info';
-            infoDiv.innerHTML = `
-                <div class="art-title">${art.title}</div>
-                <div class="art-category">${art.category}</div>
-            `;
-            
+            infoDiv.innerHTML = `<div class="art-title">${art.title}</div><div class="art-category">${art.category}</div>`;
             card.appendChild(imgContainer);
             card.appendChild(infoDiv);
-            
-            card.addEventListener('click', (e) => {
-                e.stopPropagation();
-                openModal(art.imgUrl, `${art.title} — ${art.category}`);
-            });
+            card.addEventListener('click', () => openModal(art.imgUrl, `${art.title} — ${art.category}`));
             artGrid.appendChild(card);
         });
     }
 
+    // FAQ Accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.querySelector('.faq-question').addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
+
+    // Modal Logic
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
     const modalCaption = document.getElementById('modalCaption');
     const closeModalBtn = document.querySelector('.close-modal');
 
     function openModal(imgSrc, captionText) {
-        if (modal && modalImg) {
-            modal.style.display = 'flex';
-            modalImg.src = imgSrc;
-            modalCaption.innerText = captionText;
-            document.body.style.overflow = 'hidden';
-        }
-    }
-
-    function closeModalFunc() {
-        if (modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModalFunc);
-    if (modal) modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModalFunc();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal && modal.style.display === 'flex') closeModalFunc();
-    });
-
-    const shopLink = document.getElementById('shopLink');
-    if (shopLink) {
-        shopLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            const notification = document.createElement('div');
-            notification.innerText = '✨ Store coming soon — exclusive prints & original sketches.';
-            notification.style.position = 'fixed';
-            notification.style.bottom = '30px';
-            notification.style.left = '50%';
-            notification.style.transform = 'translateX(-50%)';
-            notification.style.backgroundColor = '#1a1a1a';
-            notification.style.color = 'white';
-            notification.style.padding = '12px 24px';
-            notification.style.borderRadius = '40px';
-            notification.style.fontSize = '0.85rem';
-            notification.style.zIndex = '1000';
-            notification.style.fontWeight = '500';
-            document.body.appendChild(notification);
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => notification.remove(), 300);
-            }, 2500);
-        });
-    }
-
-    const yearSpan = document.getElementById('currentYear');
-    const copySpan = document.getElementById('copyYear');
-    const currentYear = new Date().getFullYear();
-    if (yearSpan) yearSpan.innerText = currentYear;
-    if (copySpan) copySpan.innerText = currentYear;
-
-    const allLinks = document.querySelectorAll('a[href^="#"]');
-    allLinks.forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            if (targetId && targetId !== '#') {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
-    });
-
-    const storyImgDiv = document.getElementById('storyImage');
-    if (storyImgDiv) {
-        storyImgDiv.style.backgroundImage = "url('IMG_20251126_081851_683~2.jpg')";
-        storyImgDiv.style.backgroundSize = "cover";
-        storyImgDiv.style.backgroundPosition = "center";
-    }
-
-    renderArtworks();
-
-    window.addEventListener('load', () => {
-        document.body.style.opacity = '1';
-        const cards = document.querySelectorAll('.art-card');
-        cards.forEach((card, i) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, i * 60);
-        });
-    });
-    
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.25s';
-</script>
-</body>
-</html>
+        modal.style.display = 'flex';
+        modalImg.src = imgSrc;
+        modalCaption.inner
