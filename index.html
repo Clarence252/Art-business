@@ -112,12 +112,86 @@
         .hero {
             width: 100%;
             background: #f5f2ed;
+            position: relative;
         }
 
         .hero-image {
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        /* ============================================ */
+        /* FLOATING WHATSAPP BUTTON - TOP LEFT CORNER */
+        /* Does NOT affect or cover the image content   */
+        /* ============================================ */
+        .whatsapp-float {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            z-index: 10;
+            background-color: #25D366;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-float i {
+            font-size: 32px;
+            color: white;
+        }
+
+        /* Subtle pulse animation for attention */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Tooltip text on hover */
+        .whatsapp-float::before {
+            content: "Chat on WhatsApp";
+            position: absolute;
+            left: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1a1a1a;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .whatsapp-float:hover::before {
+            opacity: 1;
+            visibility: visible;
+            left: 75px;
         }
 
         /* Artist Statement Section - Moved hero text here */
@@ -444,6 +518,18 @@
             .statement-container {
                 padding: 0 24px;
             }
+            .whatsapp-float {
+                width: 48px;
+                height: 48px;
+                top: 16px;
+                left: 16px;
+            }
+            .whatsapp-float i {
+                font-size: 26px;
+            }
+            .whatsapp-float::before {
+                display: none;
+            }
         }
 
         @media (max-width: 540px) {
@@ -452,6 +538,15 @@
             }
             .statement-container h2 {
                 font-size: 1.8rem;
+            }
+            .whatsapp-float {
+                width: 44px;
+                height: 44px;
+                top: 12px;
+                left: 12px;
+            }
+            .whatsapp-float i {
+                font-size: 24px;
             }
         }
 
@@ -480,7 +575,12 @@
 
 <main>
     <!-- Hero Section: JUST THE IMAGE - full size, no text overlay -->
+    <!-- Floating WhatsApp button placed at top-left, not affecting the image -->
     <section class="hero">
+        <!-- WhatsApp Floating Button - Top Left, Real WhatsApp Logo -->
+        <a href="https://wa.me/256705341715" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
         <img src="c5Wpn.jpg" alt="Legacy Sketch Works - Where Culture Meets Emotions" class="hero-image" id="heroMainImg">
     </section>
 
