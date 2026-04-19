@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>LEGACY SKETCH WORKS | Namudoto Clarence</title>
-    <!-- Google Fonts + Smoothing -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -40,7 +38,6 @@
             padding: 0 32px;
         }
 
-        /* Header / Navigation */
         .site-header {
             padding: 20px 0;
             border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -108,7 +105,6 @@
             width: 100%;
         }
 
-        /* Hero Section - Just the image, full size, no text overlay */
         .hero {
             width: 100%;
             background: #f5f2ed;
@@ -121,10 +117,6 @@
             display: block;
         }
 
-        /* ============================================ */
-        /* FLOATING WHATSAPP BUTTON - TOP RIGHT CORNER */
-        /* Does NOT affect or cover the image content   */
-        /* ============================================ */
         .whatsapp-float {
             position: absolute;
             top: 24px;
@@ -153,20 +145,12 @@
             color: white;
         }
 
-        /* Subtle pulse animation for attention */
         @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
-            }
-            70% {
-                box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* Tooltip text on hover - now positioned to the left since button is on right */
         .whatsapp-float::before {
             content: "Chat on WhatsApp";
             position: absolute;
@@ -184,8 +168,6 @@
             visibility: hidden;
             transition: all 0.2s ease;
             pointer-events: none;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.3px;
         }
 
         .whatsapp-float:hover::before {
@@ -194,7 +176,6 @@
             right: 75px;
         }
 
-        /* Artist Statement Section - Moved hero text here */
         .artist-statement {
             background: linear-gradient(135deg, #f5f2ed 0%, #ede8e0 100%);
             padding: 80px 0;
@@ -255,7 +236,6 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
-        /* Featured gallery grid - responsive for all resolutions */
         .section-title {
             font-size: 1.7rem;
             font-weight: 450;
@@ -293,7 +273,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .art-image img {
@@ -327,7 +306,6 @@
             letter-spacing: 1px;
         }
 
-        /* Studio Story section */
         .studio-story {
             display: flex;
             flex-wrap: wrap;
@@ -378,11 +356,6 @@
             transition: transform 0.3s ease;
         }
 
-        .story-img:hover {
-            transform: scale(1.01);
-        }
-
-        /* CTA Banner */
         .cta-banner {
             background: #1a1a1a;
             color: white;
@@ -391,24 +364,13 @@
             text-align: center;
             margin: 40px 0 20px;
         }
+
         .cta-banner h3 {
             font-weight: 450;
             font-size: 1.8rem;
             margin-bottom: 12px;
         }
-        .cta-banner .btn-primary {
-            background: white;
-            color: #1a1a1a;
-            border-color: white;
-            margin-top: 16px;
-        }
-        .cta-banner .btn-primary:hover {
-            background: transparent;
-            color: white;
-            transform: translateY(-3px);
-        }
 
-        /* Footer */
         .footer {
             margin-top: 100px;
             border-top: 1px solid #eae6df;
@@ -443,7 +405,6 @@
             opacity: 0.6;
         }
 
-        /* Lightbox Modal */
         .modal {
             display: none;
             position: fixed;
@@ -464,7 +425,6 @@
             max-height: 85vh;
             object-fit: contain;
             border-radius: 12px;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
         }
 
         .modal-caption {
@@ -480,7 +440,6 @@
             margin: 0 auto;
             padding: 8px 22px;
             border-radius: 40px;
-            backdrop-filter: blur(4px);
         }
 
         .close-modal {
@@ -490,85 +449,24 @@
             font-size: 2.2rem;
             color: white;
             cursor: pointer;
-            transition: 0.2s;
         }
 
-        .close-modal:hover {
-            opacity: 0.7;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 24px;
-            }
-            .header-inner {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .nav-links {
-                gap: 1.5rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .studio-story {
-                flex-direction: column;
-                padding: 40px 24px;
-            }
-            .statement-container {
-                padding: 0 24px;
-            }
-            .whatsapp-float {
-                width: 48px;
-                height: 48px;
-                top: 16px;
-                right: 16px;
-            }
-            .whatsapp-float i {
-                font-size: 26px;
-            }
-            .whatsapp-float::before {
-                display: none;
-            }
-            .art-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 25px;
-            }
+            .container { padding: 0 24px; }
+            .header-inner { flex-direction: column; align-items: center; text-align: center; }
+            .nav-links { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+            .studio-story { flex-direction: column; padding: 40px 24px; }
+            .whatsapp-float { width: 48px; height: 48px; top: 16px; right: 16px; }
+            .whatsapp-float i { font-size: 26px; }
+            .whatsapp-float::before { display: none; }
         }
 
         @media (max-width: 540px) {
-            .artist-statement {
-                padding: 50px 0;
-            }
-            .statement-container h2 {
-                font-size: 1.8rem;
-            }
-            .whatsapp-float {
-                width: 44px;
-                height: 44px;
-                top: 12px;
-                right: 12px;
-            }
-            .whatsapp-float i {
-                font-size: 24px;
-            }
-            .art-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-
-        /* Loading state */
-        .art-image img.loading {
-            opacity: 0.5;
-        }
-        
-        /* Image error fallback style */
-        .art-image img.error-load {
-            object-fit: contain;
-            padding: 20px;
-            background: #e8e4dd;
+            .artist-statement { padding: 50px 0; }
+            .statement-container h2 { font-size: 1.8rem; }
+            .whatsapp-float { width: 44px; height: 44px; top: 12px; right: 12px; }
+            .whatsapp-float i { font-size: 24px; }
+            .art-grid { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
 </head>
@@ -590,16 +488,13 @@
 </header>
 
 <main>
-    <!-- Hero Section: JUST THE IMAGE - full size, no text overlay -->
-    <!-- Floating WhatsApp button placed at top-right -->
     <section class="hero">
         <a href="https://wa.me/256705341715" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <img src="c5Wpn.jpg" alt="Legacy Sketch Works - Where Culture Meets Emotions" class="hero-image" id="heroMainImg">
+        <img src="c5Wpn.jpg" alt="Legacy Sketch Works" class="hero-image" id="heroMainImg">
     </section>
 
-    <!-- Artist Statement Section: Original hero text moved here -->
     <section class="artist-statement">
         <div class="statement-container">
             <div class="owner-name">NAMUDOTO CLARENCE — VISUAL ARTIST & STUDIO LEAD</div>
@@ -611,13 +506,11 @@
         </div>
     </section>
 
-    <!-- Featured Artworks Grid -->
     <div class="container" id="works">
         <div class="section-title">Finished pieces for sale</div>
         <div class="art-grid" id="artGrid"></div>
     </div>
 
-    <!-- Studio story -->
     <div class="container" id="studio">
         <div class="studio-story">
             <div class="story-text">
@@ -630,7 +523,6 @@
         </div>
     </div>
 
-    <!-- CTA Banner -->
     <div class="container">
         <div class="cta-banner">
             <h3>Own a piece of the Narrative</h3>
@@ -639,7 +531,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer container" id="contact">
         <div class="footer-grid">
             <div class="footer-col">
@@ -666,7 +557,6 @@
     </footer>
 </main>
 
-<!-- Lightbox Modal -->
 <div id="imageModal" class="modal">
     <span class="close-modal">&times;</span>
     <img class="modal-content" id="modalImg" alt="Enlarged artwork">
@@ -675,69 +565,25 @@
 
 <script>
     // ============================================================
-    // COMPLETE LIST OF UPLOADED IMAGES (from your repository)
-    // Using exact filenames with multiple fallback strategies
+    // YOUR ACTUAL FILENAMES FROM THE SCREENSHOT
+    // These are the EXACT names as they appear in your repository
     // ============================================================
     const galleryImages = [
-        { title: "Highland Refuge", category: "Original Sketch", imgUrl: "DSC_0013~2.JPG", alt: "Hut landscape sketch" },
-        { title: "Morning Contours", category: "Charcoal on paper", imgUrl: "IMG_20251119_085420.jpg", alt: "Abstract portrait study" },
-        { title: "Quiet Gaze", category: "Graphite & wash", imgUrl: "IMG_20251126_081851.jpg", alt: "Minimalist face study" },
-        { title: "Fragmented Echo", category: "Ink & pencil", imgUrl: "IMG_20251126_081851~2.jpg", alt: "Expressive line art" },
-        { title: "Veiled Thoughts", category: "Soft charcoal", imgUrl: "IMG_20251126_081951.jpg", alt: "Deep contrast portrait" },
-        { title: "Layered Silence", category: "Mixed media", imgUrl: "IMG_20251126_082018.jpg", alt: "Abstract composition" },
-        { title: "Ephemeral Presence", category: "Pencil on archival", imgUrl: "IMG_20251126_082054.jpg", alt: "Detailed figure study" },
-        { title: "Shadow Memory", category: "Charcoal & chalk", imgUrl: "IMG_20251126_082132.jpg", alt: "Dramatic portrait" },
-        { title: "Dawn Ritual", category: "Ink wash", imgUrl: "IMG_20251126_082145.jpg", alt: "Expressive marks" },
-        { title: "Unspoken Diaries", category: "Graphite drawing", imgUrl: "IMG_20251126_082208.jpg", alt: "Narrative sketch" },
-        { title: "Twilight Archive", category: "Mixed media on paper", imgUrl: "IMG_20251126_145641.jpg", alt: "Dreamlike abstraction" },
-        { title: "Solitary Path", category: "Original sketch", imgUrl: "IMG_20251127_165645.jpg", alt: "Landscape memory" }
+        { title: "Hut Picture", category: "Original Sketch", imgUrl: "Hut picture", alt: "Hut landscape sketch" },
+        { title: "Morning Contours", category: "Charcoal on paper", imgUrl: "IMG_20251119_085420_677.jpg", alt: "Abstract portrait study" },
+        { title: "Quiet Gaze", category: "Graphite & wash", imgUrl: "IMG_20251126_081851_683~2.jpg", alt: "Minimalist face study" },
+        { title: "Fragmented Echo", category: "Ink & pencil", imgUrl: "IMG_20251126_081851_683~3.jpg", alt: "Expressive line art" },
+        { title: "Veiled Thoughts", category: "Soft charcoal", imgUrl: "IMG_20251126_081951_644.jpg", alt: "Deep contrast portrait" },
+        { title: "Layered Silence", category: "Mixed media", imgUrl: "IMG_20251126_082018_134~3.jpg", alt: "Abstract composition" },
+        { title: "Ephemeral Presence", category: "Pencil on archival", imgUrl: "IMG_20251126_082054_000.jpg", alt: "Detailed figure study" },
+        { title: "Shadow Memory", category: "Charcoal & chalk", imgUrl: "IMG_20251126_082132_404~3.jpg", alt: "Dramatic portrait" },
+        { title: "Dawn Ritual", category: "Ink wash", imgUrl: "IMG_20251126_082145_313.jpg", alt: "Expressive marks" },
+        { title: "Unspoken Diaries", category: "Graphite drawing", imgUrl: "IMG_20251126_082208_469~3.jpg", alt: "Narrative sketch" },
+        { title: "Twilight Archive", category: "Mixed media on paper", imgUrl: "IMG_20251126_145641_254.jpg", alt: "Dreamlike abstraction" },
+        { title: "Solitary Path", category: "Original sketch", imgUrl: "IMG_20251127_165645_069~2.jpg", alt: "Landscape memory" }
     ];
 
     const artGrid = document.getElementById('artGrid');
-
-    // Enhanced image loader with multiple retries and fallback to unsplash for broken images
-    function loadImageWithRetry(imgElement, src, maxRetries = 4) {
-        let retryCount = 0;
-        let timeoutId = null;
-        
-        const fallbackImages = [
-            "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&h=750&fit=crop",
-            "https://images.unsplash.com/photo-1581287053258-5e2b2d0b1b98?w=600&h=750&fit=crop",
-            "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=600&h=750&fit=crop",
-            "https://images.unsplash.com/photo-1545987796-200677ee1011?w=600&h=750&fit=crop"
-        ];
-        
-        const attemptLoad = () => {
-            const cacheBuster = '?t=' + Date.now() + '_' + retryCount;
-            imgElement.src = src + cacheBuster;
-        };
-        
-        imgElement.onerror = () => {
-            if (retryCount < maxRetries) {
-                retryCount++;
-                console.log(`Retrying (${retryCount}/${maxRetries}): ${src}`);
-                if (timeoutId) clearTimeout(timeoutId);
-                timeoutId = setTimeout(attemptLoad, 600);
-            } else {
-                console.warn(`Failed after ${maxRetries} retries: ${src}`);
-                // Use a relevant fallback image based on index to keep visual variety
-                const fallbackIndex = Math.floor(Math.random() * fallbackImages.length);
-                imgElement.src = fallbackImages[fallbackIndex];
-                imgElement.classList.add('error-load');
-                imgElement.alt = "Artwork Preview";
-            }
-        };
-        
-        imgElement.onload = () => {
-            imgElement.style.opacity = '1';
-            imgElement.classList.remove('loading');
-            if (timeoutId) clearTimeout(timeoutId);
-        };
-        
-        imgElement.classList.add('loading');
-        imgElement.style.opacity = '0';
-        attemptLoad();
-    }
 
     function renderArtworks() {
         if (!artGrid) return;
@@ -753,7 +599,15 @@
             const imgElement = document.createElement('img');
             imgElement.alt = art.alt;
             imgElement.loading = "lazy";
-            loadImageWithRetry(imgElement, art.imgUrl);
+            imgElement.src = art.imgUrl;
+            
+            imgElement.onerror = function() {
+                console.log(`Failed to load: ${art.imgUrl}`);
+                this.style.background = "#e8e4dd";
+                this.style.padding = "40px";
+                this.style.objectFit = "contain";
+                this.alt = "Artwork image";
+            };
             
             imgContainer.appendChild(imgElement);
             
@@ -769,15 +623,12 @@
             
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
-                // For modal, use the original URL or fallback
-                const modalSrc = imgElement.src;
-                openModal(modalSrc, `${art.title} — ${art.category}`);
+                openModal(art.imgUrl, `${art.title} — ${art.category}`);
             });
             artGrid.appendChild(card);
         });
     }
 
-    // Modal functionality
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
     const modalCaption = document.getElementById('modalCaption');
@@ -807,7 +658,6 @@
         if (e.key === 'Escape' && modal && modal.style.display === 'flex') closeModalFunc();
     });
 
-    // Shop notification
     const shopLink = document.getElementById('shopLink');
     if (shopLink) {
         shopLink.addEventListener('click', (e) => {
@@ -833,14 +683,12 @@
         });
     }
 
-    // Dynamic year
     const yearSpan = document.getElementById('currentYear');
     const copySpan = document.getElementById('copyYear');
     const currentYear = new Date().getFullYear();
     if (yearSpan) yearSpan.innerText = currentYear;
     if (copySpan) copySpan.innerText = currentYear;
 
-    // Smooth scroll
     const allLinks = document.querySelectorAll('a[href^="#"]');
     allLinks.forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -856,60 +704,17 @@
         });
     });
 
-    // Hero image with retry
-    const heroImg = document.getElementById('heroMainImg');
-    if (heroImg) {
-        let heroRetries = 0;
-        heroImg.onerror = function() {
-            if (heroRetries < 3) {
-                heroRetries++;
-                setTimeout(() => {
-                    heroImg.src = 'c5Wpn.jpg?retry=' + Date.now();
-                }, 500);
-            }
-        };
-    }
-
-    // Story image with dynamic loading
     const storyImgDiv = document.getElementById('storyImage');
     if (storyImgDiv) {
-        const storyImgUrl = "IMG_20251126_081851~2.jpg";
-        const testImg = new Image();
-        testImg.onload = () => {
-            storyImgDiv.style.backgroundImage = `url('${storyImgUrl}')`;
-            storyImgDiv.style.backgroundSize = "cover";
-            storyImgDiv.style.backgroundPosition = "center";
-        };
-        testImg.onerror = () => {
-            // Fallback to a high-quality unsplash image
-            storyImgDiv.style.backgroundImage = "url('https://images.unsplash.com/photo-1549887534-1541e9326649?w=800&h=1000&fit=crop')";
-            storyImgDiv.style.backgroundSize = "cover";
-            storyImgDiv.style.backgroundPosition = "center";
-        };
-        testImg.src = storyImgUrl;
+        storyImgDiv.style.backgroundImage = "url('IMG_20251126_081851_683~2.jpg')";
+        storyImgDiv.style.backgroundSize = "cover";
+        storyImgDiv.style.backgroundPosition = "center";
     }
 
-    // Render gallery
     renderArtworks();
 
-    // Force refresh images and handle responsive loading
     window.addEventListener('load', () => {
         document.body.style.opacity = '1';
-        
-        // Aggressive retry for any images that might have failed
-        setTimeout(() => {
-            const allGalleryImgs = document.querySelectorAll('.art-image img');
-            allGalleryImgs.forEach((img, index) => {
-                if (!img.complete || img.naturalWidth === 0) {
-                    const originalSrc = galleryImages[index % galleryImages.length]?.imgUrl;
-                    if (originalSrc && !img.src.includes('unsplash')) {
-                        img.src = originalSrc + '?force=' + Date.now() + '_' + index;
-                    }
-                }
-            });
-        }, 1500);
-        
-        // Staggered card entrance animation
         const cards = document.querySelectorAll('.art-card');
         cards.forEach((card, i) => {
             card.style.opacity = '0';
