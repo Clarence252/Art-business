@@ -108,46 +108,45 @@
             width: 100%;
         }
 
-        /* Hero Section with Fade-in and Slow Zoom */
+        /* Hero Section with Fade-in and Faster Zoom */
         .hero {
             width: 100%;
             background: #f5f2ed;
             position: relative;
             overflow: hidden;
-            animation: heroFadeIn 1.2s ease-out forwards;
+            animation: heroFadeIn 1s ease-out forwards;
         }
 
         @keyframes heroFadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         .hero-image {
             width: 100%;
             height: auto;
             display: block;
-            animation: slowZoom 20s ease-in-out forwards;
+            animation: fastZoom 8s ease-in-out forwards;
             transform-origin: center center;
         }
 
-        /* Extremely slow zoom effect - starts slow, stops gracefully */
-        @keyframes slowZoom {
+        /* Faster zoom effect - noticeable but doesn't ruin visibility */
+        @keyframes fastZoom {
             0% {
                 transform: scale(1);
             }
-            50% {
-                transform: scale(1.03);
+            40% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(1.05);
             }
             100% {
-                transform: scale(1.02);
+                transform: scale(1.04);
             }
         }
 
-        /* WhatsApp Button - Larger, Not Too Much in Corner */
+        /* WhatsApp Button */
         .whatsapp-float {
             position: absolute;
             top: 30px;
@@ -163,18 +162,12 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            animation: pulse 2s infinite, floatButton 1s ease-out;
+            animation: pulse 2s infinite, floatButton 0.8s ease-out;
         }
 
         @keyframes floatButton {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .whatsapp-float:hover {
@@ -587,9 +580,7 @@
             margin-bottom: 12px;
         }
 
-        /* ============================================ */
-        /* BACK TO TOP BUTTON */
-        /* ============================================ */
+        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -624,9 +615,7 @@
             font-size: 1.2rem;
         }
 
-        /* ============================================ */
-        /* SHARE BUTTONS - Floating social share */
-        /* ============================================ */
+        /* Share Buttons */
         .share-buttons {
             position: fixed;
             left: 20px;
@@ -640,14 +629,8 @@
         }
 
         @keyframes slideInLeft {
-            0% {
-                opacity: 0;
-                transform: translate(-50px, -50%);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(-50%);
-            }
+            0% { opacity: 0; transform: translate(-50px, -50%); }
+            100% { opacity: 1; transform: translateY(-50%); }
         }
 
         .share-btn {
@@ -676,7 +659,6 @@
             font-size: 1.2rem;
         }
 
-        /* Tooltip for share buttons */
         .share-btn {
             position: relative;
         }
@@ -876,13 +858,11 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <div class="container" id="works">
         <div class="section-title" data-aos="fade-right">Finished pieces for sale</div>
         <div class="art-grid" id="artGrid"></div>
     </div>
 
-    <!-- Commission Process Section -->
     <div class="container" id="process">
         <div class="process-section" data-aos="fade-up">
             <div class="section-title" style="border-left-color: #25D366;">How to Commission a Piece</div>
@@ -911,7 +891,6 @@
         </div>
     </div>
 
-    <!-- Testimonials Section -->
     <div class="container" id="testimonials">
         <div class="testimonials-section" data-aos="fade-up">
             <div class="section-title">What Collectors Say</div>
@@ -938,7 +917,6 @@
         </div>
     </div>
 
-    <!-- FAQ Section -->
     <div class="container" id="faq">
         <div class="faq-section" data-aos="fade-up">
             <div class="section-title" style="border-left-color: #25D366;">Frequently Asked Questions</div>
@@ -963,7 +941,6 @@
         </div>
     </div>
 
-    <!-- Studio Story -->
     <div class="container" id="studio">
         <div class="studio-story" data-aos="fade-up">
             <div class="story-text">
@@ -976,7 +953,6 @@
         </div>
     </div>
 
-    <!-- CTA Banner -->
     <div class="container">
         <div class="cta-banner" data-aos="zoom-in">
             <h3>Own a piece of the Narrative</h3>
@@ -985,7 +961,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-grid">
@@ -1020,7 +995,6 @@
     </footer>
 </main>
 
-<!-- Share Buttons - Floating Left -->
 <div class="share-buttons">
     <div class="share-btn whatsapp" data-tooltip="Share on WhatsApp" id="shareWhatsapp">
         <i class="fab fa-whatsapp"></i>
@@ -1036,7 +1010,6 @@
     </div>
 </div>
 
-<!-- Back to Top Button -->
 <div class="back-to-top" id="backToTop">
     <i class="fas fa-arrow-up"></i>
 </div>
@@ -1051,7 +1024,6 @@
 <script>
     AOS.init({ duration: 800, once: true, offset: 100 });
 
-    // Gallery Images
     const galleryImages = [
         { title: "Morning Contours", category: "Charcoal on paper", imgUrl: "IMG_20251119_085420_677.jpg", alt: "Abstract portrait study" },
         { title: "Quiet Gaze", category: "Graphite & wash", imgUrl: "IMG_20251126_081851_683~2.jpg", alt: "Minimalist face study" },
@@ -1101,37 +1073,23 @@
         });
     });
 
-    // Back to Top Button Logic
+    // Back to Top
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTop.classList.add('show');
-        } else {
-            backToTop.classList.remove('show');
-        }
+        if (window.scrollY > 300) backToTop.classList.add('show');
+        else backToTop.classList.remove('show');
     });
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // Share Functionality
+    // Share functionality
     const currentUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent("LEGACY SKETCH WORKS - Namudoto Clarence Art Portfolio");
-    
-    document.getElementById('shareWhatsapp')?.addEventListener('click', () => {
-        window.open(`https://wa.me/?text=${pageTitle}%20${currentUrl}`, '_blank');
-    });
-    document.getElementById('shareFacebook')?.addEventListener('click', () => {
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`, '_blank');
-    });
-    document.getElementById('shareTwitter')?.addEventListener('click', () => {
-        window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${currentUrl}`, '_blank');
-    });
-    document.getElementById('shareEmail')?.addEventListener('click', () => {
-        window.location.href = `mailto:?subject=${pageTitle}&body=Check out this amazing art portfolio: ${window.location.href}`;
-    });
+    document.getElementById('shareWhatsapp')?.addEventListener('click', () => window.open(`https://wa.me/?text=${pageTitle}%20${currentUrl}`, '_blank'));
+    document.getElementById('shareFacebook')?.addEventListener('click', () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`, '_blank'));
+    document.getElementById('shareTwitter')?.addEventListener('click', () => window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${currentUrl}`, '_blank'));
+    document.getElementById('shareEmail')?.addEventListener('click', () => window.location.href = `mailto:?subject=${pageTitle}&body=Check out this amazing art portfolio: ${window.location.href}`);
 
-    // Modal Logic
+    // Modal
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
     const modalCaption = document.getElementById('modalCaption');
@@ -1161,12 +1119,10 @@
         setTimeout(() => { notification.style.opacity = '0'; setTimeout(() => notification.remove(), 300); }, 2500);
     });
 
-    // Dynamic year
     const year = new Date().getFullYear();
     document.getElementById('currentYear') && (document.getElementById('currentYear').innerText = year);
     document.getElementById('copyYear') && (document.getElementById('copyYear').innerText = year);
 
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const target = document.querySelector(this.getAttribute('href'));
@@ -1174,7 +1130,6 @@
         });
     });
 
-    // Story image
     const storyDiv = document.getElementById('storyImage');
     if (storyDiv) storyDiv.style.backgroundImage = "url('IMG_20251126_081851_683~2.jpg')";
 
