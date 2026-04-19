@@ -6,7 +6,6 @@
     <title>LEGACY SKETCH WORKS | Namudoto Clarence</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- AOS Library for scroll animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         * {
@@ -109,17 +108,43 @@
             width: 100%;
         }
 
-        /* Hero Section */
+        /* Hero Section with Fade-in and Slow Zoom */
         .hero {
             width: 100%;
             background: #f5f2ed;
             position: relative;
+            overflow: hidden;
+            animation: heroFadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes heroFadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         .hero-image {
             width: 100%;
             height: auto;
             display: block;
+            animation: slowZoom 20s ease-in-out forwards;
+            transform-origin: center center;
+        }
+
+        /* Extremely slow zoom effect - starts slow, stops gracefully */
+        @keyframes slowZoom {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+            100% {
+                transform: scale(1.02);
+            }
         }
 
         /* WhatsApp Button - Larger, Not Too Much in Corner */
@@ -138,7 +163,18 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite, floatButton 1s ease-out;
+        }
+
+        @keyframes floatButton {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .whatsapp-float:hover {
@@ -174,7 +210,6 @@
             visibility: hidden;
             transition: all 0.2s ease;
             pointer-events: none;
-            font-family: 'Inter', sans-serif;
         }
 
         .whatsapp-float:hover::before {
@@ -552,7 +587,123 @@
             margin-bottom: 12px;
         }
 
-        /* Footer - Enhanced */
+        /* ============================================ */
+        /* BACK TO TOP BUTTON */
+        /* ============================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #1a1a1a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #25D366;
+            transform: translateY(-5px);
+        }
+
+        .back-to-top i {
+            font-size: 1.2rem;
+        }
+
+        /* ============================================ */
+        /* SHARE BUTTONS - Floating social share */
+        /* ============================================ */
+        .share-buttons {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 99;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translate(-50px, -50%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-50%);
+            }
+        }
+
+        .share-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .share-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .share-btn.whatsapp { background: #25D366; }
+        .share-btn.facebook { background: #1877F2; }
+        .share-btn.twitter { background: #1DA1F2; }
+        .share-btn.email { background: #ea4335; }
+
+        .share-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Tooltip for share buttons */
+        .share-btn {
+            position: relative;
+        }
+
+        .share-btn::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 55px;
+            background: #1a1a1a;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .share-btn:hover::before {
+            opacity: 1;
+            visibility: visible;
+            left: 60px;
+        }
+
+        /* Footer */
         .footer {
             margin-top: 100px;
             background: #1a1a1a;
@@ -680,10 +831,10 @@
             .whatsapp-float { width: 54px; height: 54px; top: 16px; right: 16px; }
             .whatsapp-float i { font-size: 30px; }
             .whatsapp-float::before { display: none; }
-            .process-grid { grid-template-columns: 1fr; gap: 30px; }
-            .testimonials-grid { grid-template-columns: 1fr; }
-            .footer-grid { flex-direction: column; text-align: center; }
-            .social-links { justify-content: center; }
+            .share-buttons { left: 10px; }
+            .share-btn { width: 38px; height: 38px; }
+            .share-btn i { font-size: 1rem; }
+            .back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
         }
     </style>
 </head>
@@ -725,7 +876,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section (Hut picture removed) -->
+    <!-- Gallery Section -->
     <div class="container" id="works">
         <div class="section-title" data-aos="fade-right">Finished pieces for sale</div>
         <div class="art-grid" id="artGrid"></div>
@@ -767,19 +918,19 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card" data-aos="flip-left" data-aos-delay="100">
                     <div class="stars">★★★★★</div>
-                    <div class="testimonial-text">"Clarence captured my mother's essence in a way photographs never could. The depth and emotion in the charcoal work is breathtaking. Truly a masterpiece."</div>
+                    <div class="testimonial-text">"Clarence captured my mother's essence in a way photographs never could. The depth and emotion in the charcoal work is breathtaking."</div>
                     <div class="testimonial-author">— Sarah M., Kampala</div>
                     <div class="testimonial-title">Commissioned Portrait</div>
                 </div>
                 <div class="testimonial-card" data-aos="flip-left" data-aos-delay="200">
                     <div class="stars">★★★★★</div>
-                    <div class="testimonial-text">"The attention to detail and the way light plays across the sketches is incredible. I've bought three pieces and each one tells its own story."</div>
+                    <div class="testimonial-text">"The attention to detail and the way light plays across the sketches is incredible. I've bought three pieces and each tells its own story."</div>
                     <div class="testimonial-author">— James K., Nairobi</div>
                     <div class="testimonial-title">Collector</div>
                 </div>
                 <div class="testimonial-card" data-aos="flip-left" data-aos-delay="300">
                     <div class="stars">★★★★★</div>
-                    <div class="testimonial-text">"Working with Clarence was seamless. He listened to my ideas and created something far beyond my expectations. Will definitely commission again."</div>
+                    <div class="testimonial-text">"Working with Clarence was seamless. He listened to my ideas and created something far beyond my expectations."</div>
                     <div class="testimonial-author">— Amina D., London</div>
                     <div class="testimonial-title">Custom Illustration</div>
                 </div>
@@ -793,27 +944,19 @@
             <div class="section-title" style="border-left-color: #25D366;">Frequently Asked Questions</div>
             <div class="faq-grid">
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="100">
-                    <div class="faq-question">
-                        How long does a commissioned piece take? <i class="fas fa-chevron-down"></i>
-                    </div>
+                    <div class="faq-question">How long does a commissioned piece take? <i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Typical turnaround time is 2-4 weeks depending on complexity and size. Rush orders may be available for an additional fee.</div>
                 </div>
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="150">
-                    <div class="faq-question">
-                        What are your price ranges? <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">Original sketches start at $200, detailed portraits from $450, and large-scale works vary. Contact me for a personalized quote based on your needs.</div>
+                    <div class="faq-question">What are your price ranges? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Original sketches start at $200, detailed portraits from $450, and large-scale works vary. Contact me for a personalized quote.</div>
                 </div>
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="200">
-                    <div class="faq-question">
-                        Do you ship internationally? <i class="fas fa-chevron-down"></i>
-                    </div>
+                    <div class="faq-question">Do you ship internationally? <i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Yes, I ship worldwide. Shipping costs vary by location, and each piece is carefully packaged with tracking and insurance.</div>
                 </div>
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="250">
-                    <div class="faq-question">
-                        Can I request revisions? <i class="fas fa-chevron-down"></i>
-                    </div>
+                    <div class="faq-question">Can I request revisions? <i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Absolutely. You'll receive a digital sketch for approval, and I offer up to two rounds of revisions to ensure you're completely satisfied.</div>
                 </div>
             </div>
@@ -825,7 +968,7 @@
         <div class="studio-story" data-aos="fade-up">
             <div class="story-text">
                 <h3>Art of Intentionality</h3>
-                <p>Namudoto Clarence explores the space between minimalist form and profound emotional depth. Based between Kampala and Europe, his work is defined by a deliberate, high-contrast aesthetic that captures what remains unseen. Each piece is an archive of a moment—crafted for those who value art that speaks in the silence.</p>
+                <p>Namudoto Clarence explores the space between minimalist form and profound emotional depth. Based between Kampala and Europe, his work is defined by a deliberate, high-contrast aesthetic that captures what remains unseen.</p>
                 <p>"I draw not what I see, but what lingers beneath the surface. My art is an archive of unspoken stories." — N. Clarence</p>
                 <div class="signature">— Namudoto Clarence, <span id="currentYear"></span></div>
             </div>
@@ -842,7 +985,7 @@
         </div>
     </div>
 
-    <!-- Enhanced Footer -->
+    <!-- Footer -->
     <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-grid">
@@ -877,6 +1020,27 @@
     </footer>
 </main>
 
+<!-- Share Buttons - Floating Left -->
+<div class="share-buttons">
+    <div class="share-btn whatsapp" data-tooltip="Share on WhatsApp" id="shareWhatsapp">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+    <div class="share-btn facebook" data-tooltip="Share on Facebook" id="shareFacebook">
+        <i class="fab fa-facebook-f"></i>
+    </div>
+    <div class="share-btn twitter" data-tooltip="Share on Twitter" id="shareTwitter">
+        <i class="fab fa-twitter"></i>
+    </div>
+    <div class="share-btn email" data-tooltip="Share via Email" id="shareEmail">
+        <i class="fas fa-envelope"></i>
+    </div>
+</div>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
 <div id="imageModal" class="modal">
     <span class="close-modal">&times;</span>
     <img class="modal-content" id="modalImg" alt="Enlarged artwork">
@@ -885,14 +1049,9 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Initialize AOS for scroll animations
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 100
-    });
+    AOS.init({ duration: 800, once: true, offset: 100 });
 
-    // Gallery Images (Hut picture removed)
+    // Gallery Images
     const galleryImages = [
         { title: "Morning Contours", category: "Charcoal on paper", imgUrl: "IMG_20251119_085420_677.jpg", alt: "Abstract portrait study" },
         { title: "Quiet Gaze", category: "Graphite & wash", imgUrl: "IMG_20251126_081851_683~2.jpg", alt: "Minimalist face study" },
@@ -917,7 +1076,6 @@
             card.className = 'art-card';
             card.setAttribute('data-aos', 'fade-up');
             card.setAttribute('data-aos-delay', idx * 50);
-            
             const imgContainer = document.createElement('div');
             imgContainer.className = 'art-image';
             const imgElement = document.createElement('img');
@@ -926,7 +1084,6 @@
             imgElement.src = art.imgUrl;
             imgElement.onerror = function() { this.style.background = "#e8e4dd"; this.style.padding = "40px"; };
             imgContainer.appendChild(imgElement);
-            
             const infoDiv = document.createElement('div');
             infoDiv.className = 'art-info';
             infoDiv.innerHTML = `<div class="art-title">${art.title}</div><div class="art-category">${art.category}</div>`;
@@ -942,6 +1099,36 @@
         item.querySelector('.faq-question').addEventListener('click', () => {
             item.classList.toggle('active');
         });
+    });
+
+    // Back to Top Button Logic
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('show');
+        } else {
+            backToTop.classList.remove('show');
+        }
+    });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Share Functionality
+    const currentUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent("LEGACY SKETCH WORKS - Namudoto Clarence Art Portfolio");
+    
+    document.getElementById('shareWhatsapp')?.addEventListener('click', () => {
+        window.open(`https://wa.me/?text=${pageTitle}%20${currentUrl}`, '_blank');
+    });
+    document.getElementById('shareFacebook')?.addEventListener('click', () => {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`, '_blank');
+    });
+    document.getElementById('shareTwitter')?.addEventListener('click', () => {
+        window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${currentUrl}`, '_blank');
+    });
+    document.getElementById('shareEmail')?.addEventListener('click', () => {
+        window.location.href = `mailto:?subject=${pageTitle}&body=Check out this amazing art portfolio: ${window.location.href}`;
     });
 
     // Modal Logic
