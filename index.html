@@ -78,6 +78,7 @@
             display: flex;
             gap: 2rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -113,6 +114,7 @@
             position: relative;
             overflow: hidden;
             animation: heroFadeIn 1s ease-out forwards;
+            max-height: 600px;
         }
 
         @keyframes heroFadeIn {
@@ -122,7 +124,8 @@
 
         .hero-image {
             width: 100%;
-            height: auto;
+            height: 600px;
+            object-fit: cover;
             display: block;
             animation: fastZoom 8s ease-in-out forwards;
             transform-origin: center center;
@@ -172,31 +175,6 @@
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
             70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .whatsapp-float::before {
-            content: "Chat on WhatsApp";
-            position: absolute;
-            right: 80px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #1a1a1a;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s ease;
-            pointer-events: none;
-        }
-
-        .whatsapp-float:hover::before {
-            opacity: 1;
-            visibility: visible;
-            right: 85px;
         }
 
         .artist-statement {
@@ -269,9 +247,7 @@
             padding-left: 20px;
         }
 
-        /* ================================================================ */
         /* FILTER BAR */
-        /* ================================================================ */
         .filter-bar {
             display: flex;
             flex-wrap: wrap;
@@ -336,9 +312,7 @@
             margin-left: auto;
         }
 
-        /* ================================================================ */
-        /* GALLERY GRID - 6 columns desktop, 3 columns mobile */
-        /* ================================================================ */
+        /* GALLERY GRID */
         .art-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -371,6 +345,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
         .art-image img {
@@ -732,32 +707,6 @@
             font-size: 1.2rem;
         }
 
-        .share-btn {
-            position: relative;
-        }
-
-        .share-btn::before {
-            content: attr(data-tooltip);
-            position: absolute;
-            left: 55px;
-            background: #1a1a1a;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s ease;
-            pointer-events: none;
-        }
-
-        .share-btn:hover::before {
-            opacity: 1;
-            visibility: visible;
-            left: 60px;
-        }
-
         .footer {
             margin-top: 100px;
             background: #1a1a1a;
@@ -875,9 +824,7 @@
             cursor: pointer;
         }
 
-        /* ================================================================ */
-        /* RESPONSIVE: 6 columns desktop → 3 columns mobile */
-        /* ================================================================ */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
             .art-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -903,7 +850,6 @@
             
             .nav-links {
                 gap: 1.2rem;
-                flex-wrap: wrap;
                 justify-content: center;
             }
             
@@ -921,10 +867,6 @@
             
             .whatsapp-float i {
                 font-size: 24px;
-            }
-            
-            .whatsapp-float::before {
-                display: none;
             }
             
             .share-buttons {
@@ -1029,7 +971,7 @@
         <a href="https://wa.me/256705341715" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <img src="c5Wpn.jpg" alt="Legacy Sketch Works" class="hero-image" id="heroMainImg">
+        <img src="Boldness.jpg" alt="Legacy Sketch Works" class="hero-image" id="heroMainImg">
     </section>
 
     <section class="artist-statement" data-aos="fade-up">
@@ -1046,7 +988,6 @@
     <div class="container" id="works">
         <div class="section-title" data-aos="fade-right">FINISHED ART PIECES FOR SALE</div>
         
-        <!-- ===== FILTER BAR with SORT ===== -->
         <div class="filter-bar" data-aos="fade-up">
             <label for="categoryFilter">Filter by:</label>
             <select id="categoryFilter">
@@ -1055,7 +996,10 @@
                 <option value="Graphite">Graphite</option>
                 <option value="Ink">Ink</option>
                 <option value="Mixed Media">Mixed Media</option>
+                <option value="Acrylic">Acrylic</option>
                 <option value="Pencil">Pencil</option>
+                <option value="Landscape">Landscape</option>
+                <option value="Portrait">Portrait</option>
             </select>
             
             <select id="statusFilter">
@@ -1244,21 +1188,27 @@
     AOS.init({ duration: 800, once: true, offset: 100 });
 
     // =============================================
-    // GALLERY DATA (with order/index for sorting)
+    // ALL GALLERY IMAGES - Properly Numbered
     // =============================================
     const galleryImages = [
-        { id: 1, title: "SKETCH-00", category: "acrylic", imgUrl: "Boldness.jpg", status: "For Sale" },
-        { id: 1, title: "SKETCH-01", category: "Charcoal", imgUrl: "IMG_20251119_085420_677.jpg", status: "For Sale" },
-        { id: 2, title: "SKETCH-02", category: "Graphite", imgUrl: "IMG_20251126_081851_683~2.jpg", status: "For Sale" },
-        { id: 3, title: "SKETCH-03", category: "Ink", imgUrl: "IMG_20251126_081851_683~3.jpg", status: "For Sale" },
-        { id: 4, title: "SKETCH-04", category: "Charcoal", imgUrl: "IMG_20251126_081951_644.jpg", status: "For Sale" },
-        { id: 5, title: "SKETCH-05", category: "Mixed Media", imgUrl: "IMG_20251126_082018_134~3.jpg", status: "For Sale" },
-        { id: 6, title: "SKETCH-06", category: "Pencil", imgUrl: "IMG_20251126_082054_000.jpg", status: "For Sale" },
-        { id: 7, title: "SKETCH-07", category: "Charcoal", imgUrl: "IMG_20251126_082132_404~3.jpg", status: "For Sale" },
-        { id: 8, title: "SKETCH-08", category: "Ink", imgUrl: "IMG_20251126_082145_313.jpg", status: "For Sale" },
-        { id: 9, title: "SKETCH-09", category: "Graphite", imgUrl: "IMG_20251126_082208_469~3.jpg", status: "For Sale" },
-        { id: 10, title: "SKETCH-10", category: "Mixed Media", imgUrl: "IMG_20251126_145641_254.jpg", status: "For Sale" },
-        { id: 11, title: "SKETCH-11", category: "Graphite", imgUrl: "IMG_20251127_165645_069~2.jpg", status: "For Sale" }
+        { id: 1, title: "SKETCH-01", category: "Portrait", imgUrl: "African woman.jpg", status: "For Sale" },
+        { id: 2, title: "SKETCH-02", category: "Charcoal", imgUrl: "Boldness.jpg", status: "For Sale" },
+        { id: 3, title: "SKETCH-03", category: "Portrait", imgUrl: "Coffee drinker.jpg", status: "For Sale" },
+        { id: 4, title: "SKETCH-04", category: "Landscape", imgUrl: "Hut picture", status: "For Sale" },
+        { id: 5, title: "SKETCH-05", category: "Portrait", imgUrl: "IMG_20251119_085420_677.jpg", status: "For Sale" },
+        { id: 6, title: "SKETCH-06", category: "Charcoal", imgUrl: "IMG_20251126_081851_683~2.jpg", status: "For Sale" },
+        { id: 7, title: "SKETCH-07", category: "Portrait", imgUrl: "IMG_20251112_081851_683.jpg", status: "For Sale" },
+        { id: 8, title: "SKETCH-08", category: "Charcoal", imgUrl: "IMG_20251126_081951_644.jpg", status: "For Sale" },
+        { id: 9, title: "SKETCH-09", category: "Mixed Media", imgUrl: "IMG_20251126_082018_134~3.jpg", status: "For Sale" },
+        { id: 10, title: "SKETCH-10", category: "Pencil", imgUrl: "IMG_20251112_082054_000.jpg", status: "For Sale" },
+        { id: 11, title: "SKETCH-11", category: "Charcoal", imgUrl: "IMG_20251126_082132_404~3.jpg", status: "For Sale" },
+        { id: 12, title: "SKETCH-12", category: "Ink", imgUrl: "IMG_20251112_082145_313.jpg", status: "For Sale" },
+        { id: 13, title: "SKETCH-13", category: "Graphite", imgUrl: "IMG_20251126_082208_469~3.jpg", status: "For Sale" },
+        { id: 14, title: "SKETCH-14", category: "Mixed Media", imgUrl: "IMG_20251112_145641_254.jpg", status: "For Sale" },
+        { id: 15, title: "SKETCH-15", category: "Graphite", imgUrl: "IMG_20251127_165645_069~2.jpg", status: "For Sale" },
+        { id: 16, title: "SKETCH-16", category: "Landscape", imgUrl: "Path in a forest.jpg", status: "For Sale" },
+        { id: 17, title: "SKETCH-17", category: "Landscape", imgUrl: "Village house.jpg", status: "For Sale" },
+        { id: 18, title: "SKETCH-18", category: "Landscape", imgUrl: "Waterfall.jpg", status: "For Sale" }
     ];
 
     const artGrid = document.getElementById('artGrid');
@@ -1269,13 +1219,11 @@
     function renderArtworks() {
         if (!artGrid) return;
         
-        // Get filter values
         const categoryFilter = document.getElementById('categoryFilter').value;
         const statusFilter = document.getElementById('statusFilter').value;
         const sortFilter = document.getElementById('sortFilter').value;
         const searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
         
-        // Filter
         let filtered = galleryImages.filter(art => {
             const matchCategory = categoryFilter === 'all' || art.category === categoryFilter;
             const matchStatus = statusFilter === 'all' || art.status === statusFilter;
@@ -1283,10 +1231,8 @@
             return matchCategory && matchStatus && matchSearch;
         });
         
-        // Sort
         switch(sortFilter) {
             case 'latest':
-                // Sort by ID descending (assuming higher ID = newer)
                 filtered.sort((a, b) => b.id - a.id);
                 break;
             case 'oldest':
@@ -1298,14 +1244,10 @@
             case 'z-a':
                 filtered.sort((a, b) => b.title.localeCompare(a.title));
                 break;
-            default:
-                break;
         }
         
-        // Update count
         document.getElementById('filterCount').textContent = `Showing ${filtered.length} piece${filtered.length !== 1 ? 's' : ''}`;
         
-        // Render
         artGrid.innerHTML = '';
         
         if (filtered.length === 0) {
@@ -1326,9 +1268,7 @@
             imgElement.loading = "lazy";
             imgElement.src = art.imgUrl;
             imgElement.onerror = function() { 
-                this.src = 'https://via.placeholder.com/400x500?text=Image+Missing';
-                this.style.background = "#e8e4dd";
-                this.style.padding = "40px";
+                this.src = 'https://via.placeholder.com/400x500/1a1a1a/ffffff?text=' + art.title;
             };
             imgContainer.appendChild(imgElement);
             
@@ -1352,7 +1292,7 @@
     }
 
     // =============================================
-    // FILTER + SORT EVENT LISTENERS
+    // FILTER EVENT LISTENERS
     // =============================================
     document.getElementById('categoryFilter').addEventListener('change', renderArtworks);
     document.getElementById('statusFilter').addEventListener('change', renderArtworks);
@@ -1360,7 +1300,34 @@
     document.getElementById('searchInput').addEventListener('input', renderArtworks);
 
     // =============================================
-    // ALL YOUR ORIGINAL JAVASCRIPT (unchanged)
+    // MODAL FUNCTIONS
+    // =============================================
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeModalBtn = document.querySelector('.close-modal');
+
+    function openModal(imgSrc, captionText) {
+        modal.style.display = 'flex';
+        modalImg.src = imgSrc;
+        modalImg.onerror = function() {
+            this.src = 'https://via.placeholder.com/800x1000/1a1a1a/ffffff?text=Image+Not+Found';
+        };
+        modalCaption.innerText = captionText;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModalFunc() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    closeModalBtn?.addEventListener('click', closeModalFunc);
+    modal?.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.style.display === 'flex') closeModalFunc(); });
+
+    // =============================================
+    // OTHER FUNCTIONALITY
     // =============================================
     document.querySelectorAll('.faq-item').forEach(item => {
         item.querySelector('.faq-question').addEventListener('click', () => {
@@ -1395,25 +1362,6 @@
     document.getElementById('shareFacebook')?.addEventListener('click', () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`, '_blank'));
     document.getElementById('shareTwitter')?.addEventListener('click', () => window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${currentUrl}`, '_blank'));
     document.getElementById('shareEmail')?.addEventListener('click', () => window.location.href = `mailto:?subject=${pageTitle}&body=Check out this amazing art portfolio: ${window.location.href}`);
-
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImg');
-    const modalCaption = document.getElementById('modalCaption');
-    const closeModalBtn = document.querySelector('.close-modal');
-
-    function openModal(imgSrc, captionText) {
-        modal.style.display = 'flex';
-        modalImg.src = imgSrc;
-        modalCaption.innerText = captionText;
-        document.body.style.overflow = 'hidden';
-    }
-    function closeModalFunc() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-    closeModalBtn?.addEventListener('click', closeModalFunc);
-    modal?.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.style.display === 'flex') closeModalFunc(); });
 
     document.getElementById('shopLink')?.addEventListener('click', (e) => {
         e.preventDefault();
