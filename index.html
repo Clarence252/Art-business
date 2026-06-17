@@ -108,23 +108,19 @@
             width: 100%;
         }
 
+        /* HERO SECTION - USING c5Wpn.jpg */
         .hero {
             width: 100%;
             background: #f5f2ed;
             position: relative;
             overflow: hidden;
-            animation: heroFadeIn 1s ease-out forwards;
-            max-height: 600px;
-        }
-
-        @keyframes heroFadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            height: 500px;
+            min-height: 400px;
         }
 
         .hero-image {
             width: 100%;
-            height: 600px;
+            height: 100%;
             object-fit: cover;
             display: block;
             animation: fastZoom 8s ease-in-out forwards;
@@ -153,12 +149,7 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            animation: pulse 2s infinite, floatButton 0.8s ease-out;
-        }
-
-        @keyframes floatButton {
-            0% { opacity: 0; transform: translateY(-20px); }
-            100% { opacity: 1; transform: translateY(0); }
+            animation: pulse 2s infinite;
         }
 
         .whatsapp-float:hover {
@@ -312,7 +303,7 @@
             margin-left: auto;
         }
 
-        /* GALLERY GRID */
+        /* GALLERY GRID - FIXED FOR IMAGES */
         .art-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -338,6 +329,7 @@
             display: none;
         }
 
+        /* THIS IS THE KEY - MAKES ALL IMAGES FIT PERFECTLY */
         .art-image {
             background-color: #f0ede8;
             overflow: hidden;
@@ -673,12 +665,6 @@
             flex-direction: column;
             gap: 12px;
             z-index: 99;
-            animation: slideInLeft 0.6s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            0% { opacity: 0; transform: translate(-50px, -50%); }
-            100% { opacity: 1; transform: translateY(-50%); }
         }
 
         .share-btn {
@@ -778,6 +764,7 @@
             color: #777;
         }
 
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -904,6 +891,11 @@
             .filter-count {
                 font-size: 0.7rem;
             }
+            
+            .hero {
+                height: 300px;
+                min-height: 250px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -944,6 +936,11 @@
                 text-align: center;
                 margin-left: 0;
             }
+            
+            .hero {
+                height: 250px;
+                min-height: 200px;
+            }
         }
     </style>
 </head>
@@ -967,11 +964,12 @@
 </header>
 
 <main>
+    <!-- HERO SECTION - USING c5Wpn.jpg -->
     <section class="hero">
         <a href="https://wa.me/256705341715" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <img src="Boldness.jpg" alt="Legacy Sketch Works" class="hero-image" id="heroMainImg">
+        <img src="c5Wpn.jpg" alt="Legacy Sketch Works" class="hero-image" id="heroMainImg" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a1a1a 0%, #333 100%)';">
     </section>
 
     <section class="artist-statement" data-aos="fade-up">
@@ -1188,13 +1186,13 @@
     AOS.init({ duration: 800, once: true, offset: 100 });
 
     // =============================================
-    // ALL GALLERY IMAGES - Properly Numbered
+    // ALL GALLERY IMAGES
     // =============================================
     const galleryImages = [
         { id: 1, title: "SKETCH-01", category: "Portrait", imgUrl: "African woman.jpg", status: "For Sale" },
-        { id: 2, title: "SKETCH-02", category: "Acrylic", imgUrl: "Boldness.jpg", status: "For Sale" },
+        { id: 2, title: "SKETCH-02", category: "Charcoal", imgUrl: "Boldness.jpg", status: "For Sale" },
         { id: 3, title: "SKETCH-03", category: "Portrait", imgUrl: "Coffee drinker.jpg", status: "For Sale" },
-        { id: 4, title: "SKETCH-04", category: "Landscape", imgUrl: "Hut picture", status: "For Sale" },
+        { id: 4, title: "SKETCH-04", category: "Landscape", imgUrl: "DSC_0013~2.JPG", status: "For Sale" },
         { id: 5, title: "SKETCH-05", category: "Portrait", imgUrl: "IMG_20251119_085420_677.jpg", status: "For Sale" },
         { id: 6, title: "SKETCH-06", category: "Charcoal", imgUrl: "IMG_20251126_081851_683~2.jpg", status: "For Sale" },
         { id: 7, title: "SKETCH-07", category: "Portrait", imgUrl: "IMG_20251112_081851_683.jpg", status: "For Sale" },
@@ -1214,7 +1212,7 @@
     const artGrid = document.getElementById('artGrid');
 
     // =============================================
-    // RENDER WITH FILTERS + SORT
+    // RENDER FUNCTION
     // =============================================
     function renderArtworks() {
         if (!artGrid) return;
@@ -1268,7 +1266,7 @@
             imgElement.loading = "lazy";
             imgElement.src = art.imgUrl;
             imgElement.onerror = function() { 
-                this.src = 'https://via.placeholder.com/400x500/1a1a1a/ffffff?text=' + art.title;
+                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="500"%3E%3Crect width="400" height="500" fill="%23f0ede8"/%3E%3Ctext x="200" y="250" font-family="Inter" font-size="20" fill="%23666" text-anchor="middle"%3E' + art.title + '%3C/text%3E%3C/svg%3E';
             };
             imgContainer.appendChild(imgElement);
             
@@ -1292,7 +1290,7 @@
     }
 
     // =============================================
-    // FILTER EVENT LISTENERS
+    // EVENT LISTENERS
     // =============================================
     document.getElementById('categoryFilter').addEventListener('change', renderArtworks);
     document.getElementById('statusFilter').addEventListener('change', renderArtworks);
@@ -1300,7 +1298,7 @@
     document.getElementById('searchInput').addEventListener('input', renderArtworks);
 
     // =============================================
-    // MODAL FUNCTIONS
+    // MODAL
     // =============================================
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
@@ -1311,7 +1309,7 @@
         modal.style.display = 'flex';
         modalImg.src = imgSrc;
         modalImg.onerror = function() {
-            this.src = 'https://via.placeholder.com/800x1000/1a1a1a/ffffff?text=Image+Not+Found';
+            this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="1000"%3E%3Crect width="800" height="1000" fill="%231a1a1a"/%3E%3Ctext x="400" y="500" font-family="Inter" font-size="30" fill="%23ccc" text-anchor="middle"%3EImage Not Found%3C/text%3E%3C/svg%3E';
         };
         modalCaption.innerText = captionText;
         document.body.style.overflow = 'hidden';
