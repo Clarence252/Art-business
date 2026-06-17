@@ -269,11 +269,80 @@
             padding-left: 20px;
         }
 
-        /* Gallery Grid - Desktop: 3-4 columns, Mobile/Tablet: 2 columns */
+        /* ================================================================ */
+        /* FILTER BAR */
+        /* ================================================================ */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 30px;
+            align-items: center;
+            background: white;
+            padding: 16px 20px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #f0ede8;
+        }
+
+        .filter-bar label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6b6b6b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-bar select,
+        .filter-bar input {
+            padding: 8px 14px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            background: #fafaf8;
+            transition: all 0.2s;
+            min-width: 130px;
+        }
+
+        .filter-bar select:focus,
+        .filter-bar input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+        }
+
+        .filter-bar .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .filter-bar .search-box i {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .filter-bar .search-box input {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .filter-count {
+            font-size: 0.8rem;
+            color: #888;
+            margin-left: auto;
+        }
+
+        /* ================================================================ */
+        /* GALLERY GRID - 6 columns desktop, 3 columns mobile */
+        /* ================================================================ */
         .art-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 35px;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 25px;
             margin-bottom: 60px;
         }
 
@@ -289,6 +358,10 @@
         .art-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+        }
+
+        .art-card.hidden {
+            display: none;
         }
 
         .art-image {
@@ -329,6 +402,25 @@
             margin-top: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .sold-badge {
+            display: inline-block;
+            background: #d9534f;
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+            font-size: 1rem;
+            grid-column: 1 / -1;
         }
 
         .process-section {
@@ -783,46 +875,132 @@
             cursor: pointer;
         }
 
-        /* ======================================================================= */
-        /* RESPONSIVE: 3 PIECES PER LINE ON MOBILE AND 6 PIECES PER LINE ON TABLET */
-        /* ======================================================================= */
+        /* ================================================================ */
+        /* RESPONSIVE: 6 columns desktop → 3 columns mobile */
+        /* ================================================================ */
         @media (max-width: 1024px) {
             .art-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
             }
         }
 
         @media (max-width: 768px) {
-            .container { padding: 0 24px; }
-            .header-inner { flex-direction: column; align-items: center; text-align: center; }
-            .nav-links { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-            .studio-story { flex-direction: column; padding: 40px 24px; }
-            .whatsapp-float { width: 54px; height: 54px; top: 16px; right: 16px; }
-            .whatsapp-float i { font-size: 30px; }
-            .whatsapp-float::before { display: none; }
-            .share-buttons { left: 10px; }
-            .share-btn { width: 38px; height: 38px; }
-            .share-btn i { font-size: 1rem; }
-            .back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
             .art-grid {
-                gap: 20px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+            
+            .header-inner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .studio-story {
+                flex-direction: column;
+                padding: 30px 16px;
+            }
+            
+            .whatsapp-float {
+                width: 48px;
+                height: 48px;
+                top: 12px;
+                right: 12px;
+            }
+            
+            .whatsapp-float i {
+                font-size: 24px;
+            }
+            
+            .whatsapp-float::before {
+                display: none;
+            }
+            
+            .share-buttons {
+                left: 8px;
+            }
+            
+            .share-btn {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .share-btn i {
+                font-size: 0.9rem;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+            }
+            
+            .filter-bar {
+                padding: 12px 16px;
+                gap: 10px;
+            }
+            
+            .filter-bar select,
+            .filter-bar input {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+                min-width: 100px;
+            }
+            
+            .filter-count {
+                font-size: 0.7rem;
             }
         }
 
         @media (max-width: 480px) {
             .art-grid {
-                gap: 16px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
             }
+            
             .art-title {
-                font-size: 0.85rem;
+                font-size: 0.75rem;
             }
+            
             .art-category {
-                font-size: 0.65rem;
+                font-size: 0.6rem;
             }
+            
             .art-info {
-                padding: 0 8px 12px 8px;
-                margin-top: 10px;
+                padding: 0 6px 10px 6px;
+                margin-top: 8px;
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-bar .search-box {
+                min-width: unset;
+            }
+            
+            .filter-bar select,
+            .filter-bar input {
+                width: 100%;
+                min-width: unset;
+            }
+            
+            .filter-count {
+                text-align: center;
+                margin-left: 0;
             }
         }
     </style>
@@ -867,6 +1045,40 @@
 
     <div class="container" id="works">
         <div class="section-title" data-aos="fade-right">FINISHED ART PIECES FOR SALE</div>
+        
+        <!-- ===== FILTER BAR with SORT ===== -->
+        <div class="filter-bar" data-aos="fade-up">
+            <label for="categoryFilter">Filter by:</label>
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="Charcoal">Charcoal</option>
+                <option value="Graphite">Graphite</option>
+                <option value="Ink">Ink</option>
+                <option value="Mixed Media">Mixed Media</option>
+                <option value="Pencil">Pencil</option>
+            </select>
+            
+            <select id="statusFilter">
+                <option value="all">All Status</option>
+                <option value="For Sale">For Sale</option>
+                <option value="Sold">Sold</option>
+            </select>
+            
+            <select id="sortFilter">
+                <option value="latest">Sort by: Latest</option>
+                <option value="oldest">Sort by: Oldest</option>
+                <option value="a-z">A → Z</option>
+                <option value="z-a">Z → A</option>
+            </select>
+            
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search by title...">
+            </div>
+            
+            <span class="filter-count" id="filterCount">Showing 0 pieces</span>
+        </div>
+        
         <div class="art-grid" id="artGrid"></div>
     </div>
 
@@ -938,7 +1150,7 @@
                 </div>
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="200">
                     <div class="faq-question">Do you ship internationally? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">No, I don't ship worldwide. Duento then shipping costs that vary by location, if such a cash email me or whatsapp me for more information</div>
+                    <div class="faq-answer">No, I don't ship worldwide. Due to the shipping costs that vary by location, if such a case email me or whatsapp me for more information</div>
                 </div>
                 <div class="faq-item" data-aos="fade-right" data-aos-delay="250">
                     <div class="faq-question">Can I request revisions? <i class="fas fa-chevron-down"></i></div>
@@ -1031,41 +1243,106 @@
 <script>
     AOS.init({ duration: 800, once: true, offset: 100 });
 
+    // =============================================
+    // GALLERY DATA (with order/index for sorting)
+    // =============================================
     const galleryImages = [
-        { title: "SKETCH-01", category: "Charcoal on paper", imgUrl: "IMG_20251119_085420_677.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-02", category: "Graphite & wash", imgUrl: "IMG_20251126_081851_683~2.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-03", category: "Ink & pencil", imgUrl: "IMG_20251126_081851_683~3.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-04", category: "Soft charcoal", imgUrl: "IMG_20251126_081951_644.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-05", category: "Mixed media", imgUrl: "IMG_20251126_082018_134~3.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-06", category: "Pencil on archival", imgUrl: "IMG_20251126_082054_000.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-07", category: "Charcoal & chalk", imgUrl: "IMG_20251126_082132_404~3.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-08", category: "Ink wash", imgUrl: "IMG_20251126_082145_313.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-09", category: "Graphite drawing", imgUrl: "IMG_20251126_082208_469~3.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-10", category: "Mixed media on paper", imgUrl: "IMG_20251126_145641_254.jpg", alt: "Original sketch artwork" },
-        { title: "SKETCH-11", category: "Original sketch", imgUrl: "IMG_20251127_165645_069~2.jpg", alt: "Original sketch artwork" }
+        { id: 1, title: "SKETCH-01", category: "Charcoal", imgUrl: "IMG_20251119_085420_677.jpg", status: "For Sale" },
+        { id: 2, title: "SKETCH-02", category: "Graphite", imgUrl: "IMG_20251126_081851_683~2.jpg", status: "For Sale" },
+        { id: 3, title: "SKETCH-03", category: "Ink", imgUrl: "IMG_20251126_081851_683~3.jpg", status: "For Sale" },
+        { id: 4, title: "SKETCH-04", category: "Charcoal", imgUrl: "IMG_20251126_081951_644.jpg", status: "For Sale" },
+        { id: 5, title: "SKETCH-05", category: "Mixed Media", imgUrl: "IMG_20251126_082018_134~3.jpg", status: "For Sale" },
+        { id: 6, title: "SKETCH-06", category: "Pencil", imgUrl: "IMG_20251126_082054_000.jpg", status: "For Sale" },
+        { id: 7, title: "SKETCH-07", category: "Charcoal", imgUrl: "IMG_20251126_082132_404~3.jpg", status: "For Sale" },
+        { id: 8, title: "SKETCH-08", category: "Ink", imgUrl: "IMG_20251126_082145_313.jpg", status: "For Sale" },
+        { id: 9, title: "SKETCH-09", category: "Graphite", imgUrl: "IMG_20251126_082208_469~3.jpg", status: "For Sale" },
+        { id: 10, title: "SKETCH-10", category: "Mixed Media", imgUrl: "IMG_20251126_145641_254.jpg", status: "For Sale" },
+        { id: 11, title: "SKETCH-11", category: "Graphite", imgUrl: "IMG_20251127_165645_069~2.jpg", status: "For Sale" }
     ];
 
     const artGrid = document.getElementById('artGrid');
 
+    // =============================================
+    // RENDER WITH FILTERS + SORT
+    // =============================================
     function renderArtworks() {
         if (!artGrid) return;
+        
+        // Get filter values
+        const categoryFilter = document.getElementById('categoryFilter').value;
+        const statusFilter = document.getElementById('statusFilter').value;
+        const sortFilter = document.getElementById('sortFilter').value;
+        const searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+        
+        // Filter
+        let filtered = galleryImages.filter(art => {
+            const matchCategory = categoryFilter === 'all' || art.category === categoryFilter;
+            const matchStatus = statusFilter === 'all' || art.status === statusFilter;
+            const matchSearch = art.title.toLowerCase().includes(searchQuery);
+            return matchCategory && matchStatus && matchSearch;
+        });
+        
+        // Sort
+        switch(sortFilter) {
+            case 'latest':
+                // Sort by ID descending (assuming higher ID = newer)
+                filtered.sort((a, b) => b.id - a.id);
+                break;
+            case 'oldest':
+                filtered.sort((a, b) => a.id - b.id);
+                break;
+            case 'a-z':
+                filtered.sort((a, b) => a.title.localeCompare(b.title));
+                break;
+            case 'z-a':
+                filtered.sort((a, b) => b.title.localeCompare(a.title));
+                break;
+            default:
+                break;
+        }
+        
+        // Update count
+        document.getElementById('filterCount').textContent = `Showing ${filtered.length} piece${filtered.length !== 1 ? 's' : ''}`;
+        
+        // Render
         artGrid.innerHTML = '';
-        galleryImages.forEach((art, idx) => {
+        
+        if (filtered.length === 0) {
+            artGrid.innerHTML = `<div class="no-results">No artworks match your filters. Try adjusting your search!</div>`;
+            return;
+        }
+        
+        filtered.forEach((art, idx) => {
             const card = document.createElement('div');
             card.className = 'art-card';
             card.setAttribute('data-aos', 'fade-up');
-            card.setAttribute('data-aos-delay', idx * 50);
+            card.setAttribute('data-aos-delay', (idx * 50) % 300);
+            
             const imgContainer = document.createElement('div');
             imgContainer.className = 'art-image';
             const imgElement = document.createElement('img');
-            imgElement.alt = art.alt;
+            imgElement.alt = art.title;
             imgElement.loading = "lazy";
             imgElement.src = art.imgUrl;
-            imgElement.onerror = function() { this.style.background = "#e8e4dd"; this.style.padding = "40px"; };
+            imgElement.onerror = function() { 
+                this.src = 'https://via.placeholder.com/400x500?text=Image+Missing';
+                this.style.background = "#e8e4dd";
+                this.style.padding = "40px";
+            };
             imgContainer.appendChild(imgElement);
+            
             const infoDiv = document.createElement('div');
             infoDiv.className = 'art-info';
-            infoDiv.innerHTML = `<div class="art-title">${art.title}</div><div class="art-category">${art.category}</div>`;
+            let statusHTML = '';
+            if (art.status === 'Sold') {
+                statusHTML = `<div class="sold-badge">SOLD</div>`;
+            }
+            infoDiv.innerHTML = `
+                <div class="art-title">${art.title}</div>
+                <div class="art-category">${art.category}</div>
+                ${statusHTML}
+            `;
+            
             card.appendChild(imgContainer);
             card.appendChild(infoDiv);
             card.addEventListener('click', () => openModal(art.imgUrl, `${art.title} — ${art.category}`));
@@ -1073,6 +1350,17 @@
         });
     }
 
+    // =============================================
+    // FILTER + SORT EVENT LISTENERS
+    // =============================================
+    document.getElementById('categoryFilter').addEventListener('change', renderArtworks);
+    document.getElementById('statusFilter').addEventListener('change', renderArtworks);
+    document.getElementById('sortFilter').addEventListener('change', renderArtworks);
+    document.getElementById('searchInput').addEventListener('input', renderArtworks);
+
+    // =============================================
+    // ALL YOUR ORIGINAL JAVASCRIPT (unchanged)
+    // =============================================
     document.querySelectorAll('.faq-item').forEach(item => {
         item.querySelector('.faq-question').addEventListener('click', () => {
             item.classList.toggle('active');
@@ -1154,6 +1442,7 @@
     const storyDiv = document.getElementById('storyImage');
     if (storyDiv) storyDiv.style.backgroundImage = "url('IMG_20251126_081851_683~2.jpg')";
 
+    // Initial render
     renderArtworks();
     document.body.style.opacity = '1';
 </script>
