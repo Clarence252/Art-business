@@ -108,30 +108,24 @@
             width: 100%;
         }
 
-        /* HERO SECTION - USING c5Wpn.jpg */
+        /* HERO SECTION - SHOWS FULL IMAGE */
         .hero {
             width: 100%;
             background: #f5f2ed;
             position: relative;
             overflow: hidden;
-            height: 500px;
-            min-height: 400px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-image {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: 100vh;
+            object-fit: contain;
             display: block;
-            animation: fastZoom 8s ease-in-out forwards;
-            transform-origin: center center;
-        }
-
-        @keyframes fastZoom {
-            0% { transform: scale(1); }
-            40% { transform: scale(1.05); }
-            70% { transform: scale(1.05); }
-            100% { transform: scale(1.04); }
+            background: #f5f2ed;
         }
 
         .whatsapp-float {
@@ -303,7 +297,7 @@
             margin-left: auto;
         }
 
-        /* GALLERY GRID - FIXED FOR IMAGES */
+        /* GALLERY GRID - FIXED */
         .art-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -329,7 +323,6 @@
             display: none;
         }
 
-        /* THIS IS THE KEY - MAKES ALL IMAGES FIT PERFECTLY */
         .art-image {
             background-color: #f0ede8;
             overflow: hidden;
@@ -892,9 +885,9 @@
                 font-size: 0.7rem;
             }
             
-            .hero {
-                height: 300px;
-                min-height: 250px;
+            .hero-image {
+                height: 100vh;
+                object-fit: contain;
             }
         }
 
@@ -937,9 +930,9 @@
                 margin-left: 0;
             }
             
-            .hero {
-                height: 250px;
-                min-height: 200px;
+            .hero-image {
+                height: 100vh;
+                object-fit: contain;
             }
         }
     </style>
@@ -964,12 +957,12 @@
 </header>
 
 <main>
-    <!-- HERO SECTION - USING c5Wpn.jpg -->
+    <!-- HERO SECTION - FULL IMAGE -->
     <section class="hero">
         <a href="https://wa.me/256705341715" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <img src="c5Wpn.jpg" alt="Legacy Sketch Works" class="hero-image" id="heroMainImg" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a1a1a 0%, #333 100%)';">
+        <img src="c5Wpn.jpg" alt="Legacy Sketch Works" class="hero-image" id="heroMainImg" onerror="this.parentElement.style.background='linear-gradient(135deg, #1a1a1a 0%, #333 100%)'; this.style.display='none';">
     </section>
 
     <section class="artist-statement" data-aos="fade-up">
@@ -1185,9 +1178,7 @@
 <script>
     AOS.init({ duration: 800, once: true, offset: 100 });
 
-    // =============================================
     // ALL GALLERY IMAGES
-    // =============================================
     const galleryImages = [
         { id: 1, title: "SKETCH-01", category: "Portrait", imgUrl: "African woman.jpg", status: "For Sale" },
         { id: 2, title: "SKETCH-02", category: "Charcoal", imgUrl: "Boldness.jpg", status: "For Sale" },
@@ -1211,9 +1202,6 @@
 
     const artGrid = document.getElementById('artGrid');
 
-    // =============================================
-    // RENDER FUNCTION
-    // =============================================
     function renderArtworks() {
         if (!artGrid) return;
         
@@ -1289,17 +1277,13 @@
         });
     }
 
-    // =============================================
-    // EVENT LISTENERS
-    // =============================================
+    // Event Listeners
     document.getElementById('categoryFilter').addEventListener('change', renderArtworks);
     document.getElementById('statusFilter').addEventListener('change', renderArtworks);
     document.getElementById('sortFilter').addEventListener('change', renderArtworks);
     document.getElementById('searchInput').addEventListener('input', renderArtworks);
 
-    // =============================================
-    // MODAL
-    // =============================================
+    // Modal
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
     const modalCaption = document.getElementById('modalCaption');
@@ -1324,15 +1308,14 @@
     modal?.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.style.display === 'flex') closeModalFunc(); });
 
-    // =============================================
-    // OTHER FUNCTIONALITY
-    // =============================================
+    // FAQ
     document.querySelectorAll('.faq-item').forEach(item => {
         item.querySelector('.faq-question').addEventListener('click', () => {
             item.classList.toggle('active');
         });
     });
 
+    // Back to top
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) backToTop.classList.add('show');
@@ -1340,6 +1323,7 @@
     });
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+    // Start conversation
     const startConversationBtn = document.getElementById('startConversationBtn');
     if (startConversationBtn) {
         startConversationBtn.addEventListener('click', function(e) {
@@ -1354,6 +1338,7 @@
         });
     }
 
+    // Share buttons
     const currentUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent("LEGACY SKETCH WORKS - Namudoto Clarence Art Portfolio");
     document.getElementById('shareWhatsapp')?.addEventListener('click', () => window.open(`https://wa.me/?text=${pageTitle}%20${currentUrl}`, '_blank'));
@@ -1361,6 +1346,7 @@
     document.getElementById('shareTwitter')?.addEventListener('click', () => window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${currentUrl}`, '_blank'));
     document.getElementById('shareEmail')?.addEventListener('click', () => window.location.href = `mailto:?subject=${pageTitle}&body=Check out this amazing art portfolio: ${window.location.href}`);
 
+    // Shop
     document.getElementById('shopLink')?.addEventListener('click', (e) => {
         e.preventDefault();
         const notification = document.createElement('div');
@@ -1370,10 +1356,12 @@
         setTimeout(() => { notification.style.opacity = '0'; setTimeout(() => notification.remove(), 300); }, 2500);
     });
 
+    // Year
     const year = new Date().getFullYear();
     document.getElementById('currentYear') && (document.getElementById('currentYear').innerText = year);
     document.getElementById('copyYear') && (document.getElementById('copyYear').innerText = year);
 
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
@@ -1386,6 +1374,7 @@
         });
     });
 
+    // Story image
     const storyDiv = document.getElementById('storyImage');
     if (storyDiv) storyDiv.style.backgroundImage = "url('IMG_20251126_081851_683~2.jpg')";
 
