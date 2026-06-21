@@ -42,6 +42,33 @@
       text-rendering:optimizeLegibility;
     }
 
+    /* loading animation */
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #f7f3ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .page-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-spinner {
+      width: 56px;
+      height: 56px;
+      border: 4px solid rgba(0,0,0,.08);
+      border-top-color: #111;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%;height:auto}
     button,input,select{font:inherit}
@@ -206,6 +233,44 @@
       100%{transform:scale(1.02)}
     }
 
+    /* ----- NEW: blurred hero info box ----- */
+    .hero-info-blur {
+      background: rgba(255,255,255,.6);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.4rem, 3vw, 2.4rem);
+      margin-top: 1.8rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .hero-info-blur .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem 1.8rem;
+      font-size: .85rem;
+      font-weight: 600;
+      color: #222;
+    }
+    .hero-info-blur .badge-row i {
+      color: var(--accent);
+      margin-right: 0.3rem;
+    }
+    .hero-info-blur h2 {
+      margin: 0.6rem 0 0.3rem;
+      font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+      letter-spacing: -.04em;
+    }
+    .hero-info-blur p {
+      max-width: 48rem;
+      margin: 0.4rem auto 0;
+      color: #2e2e2e;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
     .whatsapp-float{
       position:fixed;
       top:1rem;
@@ -365,76 +430,97 @@
       box-shadow:0 14px 28px rgba(0,0,0,.06);
     }
 
+    /* --- NEW: simplified toolbar with icons --- */
     .toolbar{
       margin-top:1.6rem;
       background:rgba(255,255,255,.8);
       border:1px solid rgba(0,0,0,.06);
       box-shadow:var(--shadow);
       border-radius:var(--radius-lg);
-      padding:1rem;
+      padding:1rem 1.2rem;
     }
-
-    .toolbar-grid{
-      display:grid;
-      grid-template-columns:auto auto auto 1fr auto;
-      gap:.8rem;
-      align-items:center;
+    .toolbar-simple{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
     }
-
-    .toolbar label{
-      font-size:.75rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-weight:800;
-      color:#666;
+    .toolbar-simple .search-box{
+      flex: 1 1 240px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.1);
+      border-radius: 999px;
+      padding: 0.4rem 1rem;
     }
-
-    .toolbar select,
-    .toolbar input{
-      width:100%;
-      border:1px solid rgba(0,0,0,.1);
-      background:#fff;
-      border-radius:999px;
-      padding:.85rem 1rem;
-      outline:none;
-      transition:border-color .2s ease, box-shadow .2s ease;
-      color:#222;
+    .toolbar-simple .search-box i{
+      color: #888;
+      font-size: 0.95rem;
     }
-
-    .toolbar select:focus,
-    .toolbar input:focus{
-      border-color:rgba(37,211,102,.55);
-      box-shadow:0 0 0 4px rgba(37,211,102,.12);
+    .toolbar-simple .search-box input{
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 0.6rem 0;
+      width: 100%;
+      font-size: 0.95rem;
     }
-
-    .search-box{
-      display:flex;
-      align-items:center;
-      gap:.65rem;
-      min-width:0;
+    .toolbar-simple .filter-icons{
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
-
-    .search-box i{
-      color:#888;
-      margin-left:.25rem;
+    .toolbar-simple .filter-icons select{
+      border: 1px solid rgba(0,0,0,.1);
+      background: #fff;
+      border-radius: 999px;
+      padding: 0.55rem 1.2rem 0.55rem 1.8rem;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.8rem center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #222;
+      cursor: pointer;
+      min-width: 100px;
     }
-
-    .search-box input{
-      min-width:0;
-      flex:1;
+    .toolbar-simple .filter-icons select:focus{
+      border-color: rgba(37,211,102,.5);
+      box-shadow: 0 0 0 3px rgba(37,211,102,.12);
     }
-
-    .filter-count{
-      justify-self:end;
-      font-size:.88rem;
-      color:#7a7a7a;
-      white-space:nowrap;
-      font-weight:600;
+    .toolbar-simple .filter-count{
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #7a7a7a;
+      white-space: nowrap;
+      margin-left: auto;
+    }
+    /* icon inside select via pseudo not possible, we use background padding */
+    .toolbar-simple .filter-icons .icon-wrap{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .toolbar-simple .filter-icons .icon-wrap i{
+      position: absolute;
+      left: 0.7rem;
+      color: #666;
+      font-size: 0.8rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .toolbar-simple .filter-icons .icon-wrap select{
+      padding-left: 2rem;
     }
 
     .grid{
       display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
+      grid-template-columns:repeat(5, minmax(0,1fr));
       gap:1.1rem;
       margin-top:1.6rem;
     }
@@ -854,6 +940,7 @@
       font-size:.82rem;
     }
 
+    /* --- share buttons with smooth float in --- */
     .share-buttons{
       position:fixed;
       left:1rem;
@@ -863,12 +950,12 @@
       display:flex;
       flex-direction:column;
       gap:.75rem;
-      animation:slideInLeft .75s ease both;
+      opacity:0;
+      animation:shareFloatIn 0.9s cubic-bezier(.22,1,.36,1) 0.6s forwards;
     }
-
-    @keyframes slideInLeft{
-      from{opacity:0; transform:translate(-2rem,-50%)}
-      to{opacity:1; transform:translate(0,-50%)}
+    @keyframes shareFloatIn{
+      0%{ opacity:0; transform: translateY(-50%) translateX(-20px) scale(.92); }
+      100%{ opacity:1; transform: translateY(-50%) translateX(0) scale(1); }
     }
 
     .share-btn{
@@ -890,7 +977,14 @@
 
     .share-btn.whatsapp{background:#25D366}
     .share-btn.facebook{background:#1877F2}
-    .share-btn.twitter{background:#1DA1F2}
+    .share-btn.twitter{
+      background:#000;
+      display:grid;
+      place-items:center;
+    }
+    .share-btn.twitter i{
+      font-size:1.2rem;
+    }
     .share-btn.email{background:#ea4335}
 
     .back-to-top{
@@ -982,6 +1076,7 @@
       margin:0 auto;
     }
 
+    /* responsive: 3 on mobile, 3 on tablet, 5 on desktop */
     @media (max-width: 1100px){
       .grid{grid-template-columns:repeat(3, minmax(0,1fr))}
       .process-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
@@ -989,8 +1084,6 @@
       .footer-grid{grid-template-columns:1fr 1fr}
       .story{grid-template-columns:1fr}
       .two-col{grid-template-columns:1fr}
-      .toolbar-grid{grid-template-columns:1fr 1fr; align-items:stretch}
-      .filter-count{justify-self:start}
     }
 
     @media (max-width: 780px){
@@ -1011,20 +1104,23 @@
         align-items:flex-start;
       }
       .hero-copy p{font-size:.88rem}
-      .grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .grid{grid-template-columns:repeat(3, minmax(0,1fr))}
       .process-grid{grid-template-columns:1fr}
       .testimonials-grid{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr}
-      .toolbar-grid{grid-template-columns:1fr}
+      .toolbar-simple{flex-direction:column; align-items:stretch;}
+      .toolbar-simple .filter-icons{justify-content:center;}
+      .toolbar-simple .filter-count{margin-left:0; text-align:center;}
       .share-buttons{
         left:.45rem;
         top:auto;
         bottom:5.2rem;
         transform:none;
+        animation:shareFloatInMobile 0.9s cubic-bezier(.22,1,.36,1) 0.6s forwards;
       }
-      @keyframes slideInLeft{
-        from{opacity:0; transform:translateX(-1.5rem)}
-        to{opacity:1; transform:translateX(0)}
+      @keyframes shareFloatInMobile{
+        0%{ opacity:0; transform: translateX(-20px) scale(.92); }
+        100%{ opacity:1; transform: translateX(0) scale(1); }
       }
       .whatsapp-float{
         width:56px;
@@ -1040,7 +1136,7 @@
     }
 
     @media (max-width: 520px){
-      .grid{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(3, minmax(0,1fr))}
       .section{padding:3rem 0}
       .statement-card{padding:1.15rem}
       .story-image{min-height:280px}
@@ -1049,6 +1145,7 @@
       .hero-copy h2{font-size:1.05rem}
       .hero-copy p{font-size:.8rem}
       .hero-badge{font-size:.72rem}
+      .toolbar-simple .filter-icons select{min-width:80px; padding:0.45rem 1rem 0.45rem 1.6rem; font-size:0.75rem;}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -1058,6 +1155,12 @@
   </style>
 </head>
 <body>
+  <!-- PAGE LOADER -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-spinner"></div>
+    <span style="font-weight:600; color:#222; letter-spacing:0.08em;">Loading Legacy Sketch Works…</span>
+  </div>
+
   <a href="https://wa.me/256705341715" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
@@ -1095,6 +1198,21 @@
       </div>
     </section>
 
+    <!-- NEW BLUR SECTION -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="hero-info-blur" data-aos="fade-up" data-aos-delay="100">
+          <div class="badge-row">
+            <span><i class="fas fa-paint-brush"></i> Original works</span>
+            <span><i class="fas fa-user-tie"></i> commissions</span>
+            <span><i class="fas fa-portrait"></i> portraits</span>
+          </div>
+          <h2>Where culture meets emotion.</h2>
+          <p>High-contrast sketches and portraiture crafted with intention, detail, and a clean studio finish.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section statement" data-aos="fade-up">
       <div class="container">
         <div class="statement-card">
@@ -1110,40 +1228,44 @@
           </div>
         </div>
 
+        <!-- SIMPLIFIED TOOLBAR: search + icons -->
         <div class="toolbar" data-aos="fade-up" data-aos-delay="100">
-          <div class="toolbar-grid">
-            <label for="categoryFilter">Filter</label>
-            <select id="categoryFilter" aria-label="Filter by category">
-              <option value="all">All Categories</option>
-              <option value="Portrait">Portrait</option>
-              <option value="Charcoal">Charcoal</option>
-              <option value="Graphite">Graphite</option>
-              <option value="Ink">Ink</option>
-              <option value="Mixed Media">Mixed Media</option>
-              <option value="Pencil">Pencil</option>
-              <option value="Landscape">Landscape</option>
-            </select>
-
-            <label for="statusFilter">Status</label>
-            <select id="statusFilter" aria-label="Filter by status">
-              <option value="all">All Status</option>
-              <option value="For Sale">For Sale</option>
-              <option value="Sold">Sold</option>
-            </select>
-
-            <label for="sortFilter">Sort</label>
-            <select id="sortFilter" aria-label="Sort artworks">
-              <option value="latest">Latest</option>
-              <option value="oldest">Oldest</option>
-              <option value="a-z">A → Z</option>
-              <option value="z-a">Z → A</option>
-            </select>
-
-            <div class="search-box" aria-label="Search artworks">
+          <div class="toolbar-simple">
+            <div class="search-box">
               <i class="fas fa-search"></i>
               <input type="text" id="searchInput" placeholder="Search by title..." autocomplete="off" />
             </div>
-
+            <div class="filter-icons">
+              <span class="icon-wrap"><i class="fas fa-tag"></i>
+                <select id="categoryFilter" aria-label="Filter by category">
+                  <option value="all">All</option>
+                  <option value="Portrait">Portrait</option>
+                  <option value="Acrylic">Acrylic</option>
+                  <option value="Charcoal">Charcoal</option>
+                  <option value="Graphite">Graphite</option>
+                  <option value="Ink">Ink</option>
+                  <option value="Mixed Media">Mixed Media</option>
+                  <option value="Pencil">Pencil</option>
+                  <option value="Landscape">Landscape</option>
+                </select>
+              </span>
+              <span class="icon-wrap"><i class="fas fa-circle"></i>
+                <select id="statusFilter" aria-label="Filter by status">
+                  <option value="all">All Status</option>
+                  <option value="For Sale">For Sale</option>
+                  <option value="Sold">Sold</option>
+                </select>
+              </span>
+              <span class="icon-wrap"><i class="fas fa-sort"></i>
+                <select id="sortFilter" aria-label="Sort artworks">
+                  <option value="acrylic">Acrylic</option>
+                  <option value="latest">Latest</option>
+                  <option value="oldest">Oldest</option>
+                  <option value="a-z">A → Z</option>
+                  <option value="z-a">Z → A</option>
+                </select>
+              </span>
+            </div>
             <div class="filter-count" id="filterCount">Showing 0 pieces</div>
           </div>
         </div>
@@ -1359,9 +1481,13 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    // hide loader after page load
+    window.addEventListener('load', function(){
+      document.getElementById('pageLoader').classList.add('hidden');
+    });
+
     AOS.init({ duration: 850, once: true, offset: 90 });
 
-    // gallery from github (all filenames matched)
     const galleryImages = [
       { id: 1, title: "AFRICAN WOMAN", category: "Portrait", imgUrl: "51c573bb-4dec-4ee7-b955-ba141103cc9d.png", status: "For Sale", price: "UGX 150,000", note: "Portrait study" },
       { id: 2, title: "BOLDNESS", category: "Acrylic", imgUrl: "1c03a631-d816-4ab6-93a1-fc0e06b20105 (1).png", status: "For Sale", price: "UGX 150,000", note: "High contrast work" },
@@ -1383,6 +1509,15 @@
       { id: 18, title: "WATERFALL", category: "Landscape", imgUrl: "Waterfall.jpg", status: "For Sale", price: "UGX 90,000", note: "Water and motion" }
     ];
 
+    // custom sort: Acrylic first
+    function sortByAcrylic(arr) {
+      return arr.slice().sort((a,b) => {
+        if (a.category === 'Acrylic' && b.category !== 'Acrylic') return -1;
+        if (b.category === 'Acrylic' && a.category !== 'Acrylic') return 1;
+        return a.id - b.id;
+      });
+    }
+
     const artGrid = document.getElementById('artGrid');
     const categoryFilter = document.getElementById('categoryFilter');
     const statusFilter = document.getElementById('statusFilter');
@@ -1395,9 +1530,7 @@
     const modalCaption = document.getElementById('modalCaption');
     const closeModal = document.getElementById('closeModal');
 
-    function safeImgSrc(src){
-      return src;
-    }
+    function safeImgSrc(src){ return src; }
 
     function renderArtworks(){
       if(!artGrid) return;
@@ -1419,13 +1552,18 @@
         return matchesCategory && matchesStatus && matchesSearch;
       });
 
-      items.sort((a, b) => {
-        if(sortValue === 'latest') return b.id - a.id;
-        if(sortValue === 'oldest') return a.id - b.id;
-        if(sortValue === 'a-z') return a.title.localeCompare(b.title);
-        if(sortValue === 'z-a') return b.title.localeCompare(a.title);
-        return 0;
-      });
+      // sorting
+      if(sortValue === 'acrylic') {
+        items = sortByAcrylic(items);
+      } else if(sortValue === 'latest') {
+        items.sort((a,b) => b.id - a.id);
+      } else if(sortValue === 'oldest') {
+        items.sort((a,b) => a.id - b.id);
+      } else if(sortValue === 'a-z') {
+        items.sort((a,b) => a.title.localeCompare(b.title));
+      } else if(sortValue === 'z-a') {
+        items.sort((a,b) => b.title.localeCompare(a.title));
+      }
 
       filterCount.textContent = `Showing ${items.length} piece${items.length === 1 ? '' : 's'}`;
 
