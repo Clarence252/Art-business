@@ -1533,22 +1533,23 @@
     AOS.init({ duration: 850, once: true, offset: 90 });
 
     const galleryImages = [
-      { id: 1, title: "AFRICAN WOMAN", category: "Portrait", imgUrl: "51c573bb-4dec-4ee7-b955-ba141103cc9d.png", status: "For Sale", price: "UGX 150,000", note: "Portrait study" },
-      { id: 2, title: "BOLDNESS", category: "Acrylic", imgUrl: "1c03a631-d816-4ab6-93a1-fc0e06b20105 (1).png", status: "For Sale", price: "UGX 150,000", note: "High contrast work" },
-      { id: 3, title: "COFFEE DRINKER", category: "Acrylic", imgUrl: "coffee-drinker.jpg", status: "For Sale", price: "UGX 100,000", note: "Everyday mood" },
+      { id: 1, title: "SKY OF WISHES", category: "Acrylic", imgUrl: "60265885-e8f6-4ba6-bc9e-bfaa9ba848fe.png", status: "For Sale", price: "UGX 60,000", note: "40×35cm" },
+      { id: 2, title: "AFRICAN WOMAN", category: "Portrait", imgUrl: "51c573bb-4dec-4ee7-b955-ba141103cc9d.png", status: "For Sale", price: "UGX 150,000", note: "Portrait study" },
+      { id: 3, title: "BOLDNESS", category: "Acrylic", imgUrl: "1c03a631-d816-4ab6-93a1-fc0e06b20105 (1).png", status: "For Sale", price: "UGX 150,000", note: "High contrast work" },
+      { id: 4, title: "COFFEE DRINKER", category: "Acrylic", imgUrl: "coffee-drinker.jpg", status: "For Sale", price: "UGX 100,000", note: "Everyday mood" },
       { id: 5, title: "HORSE", category: "Portrait", imgUrl: "IMG_20251119_085420_677.jpg", status: "For Sale", price: "UGX 140,000", note: "Detailed portrait" },
       { id: 6, title: "CHARCOAL 06", category: "Charcoal", imgUrl: "IMG_20251126_081851_683~2.jpg", status: "For Sale", price: "UGX 120,000", note: "Charcoal finish" },
-      { id: 8, title: "CHARCOAL 08", category: "Charcoal", imgUrl: "IMG_20251126_081951_644.jpg", status: "For Sale", price: "UGX 120,000", note: "Dark tonal study" },
-      { id: 9, title: "MIXED MEDIA 09", category: "Mixed Media", imgUrl: "IMG_20251126_082018_134~3.jpg", status: "For Sale", price: "UGX 160,000", note: "Layered texture" },
-      { id: 10, title: "PENCIL 10", category: "Pencil", imgUrl: "IMG_20251126_082054_000.jpg", status: "For Sale", price: "UGX 95,000", note: "Clean pencil line" },
-      { id: 11, title: "CHARCOAL 11", category: "Charcoal", imgUrl: "IMG_20251126_082132_404~3.jpg", status: "For Sale", price: "UGX 120,000", note: "Bold shadow" },
-      { id: 12, title: "INK 12", category: "Ink", imgUrl: "IMG_20251126_082145_313.jpg", status: "For Sale", price: "UGX 110,000", note: "Fine ink detail" },
-      { id: 13, title: "GRAPHITE 13", category: "Graphite", imgUrl: "IMG_20251126_082208_469~3.jpg", status: "For Sale", price: "UGX 110,000", note: "Soft graphite" },
-      { id: 14, title: "MIXED MEDIA 14", category: "Mixed Media", imgUrl: "IMG_20251126_145641_254.jpg", status: "For Sale", price: "UGX 170,000", note: "Experimental mix" },
-      { id: 15, title: "GRAPHITE 15", category: "Graphite", imgUrl: "IMG_20251127_165645_069~2.jpg", status: "Sold", price: "Sold", note: "Collector piece" },
-      { id: 16, title: "PATH IN A FOREST", category: "Landscape", imgUrl: "20260310-190710~2.jpg", status: "For Sale", price: "UGX 90,000", note: "Nature scene" },
-      { id: 17, title: "VILLAGE HOUSE", category: "Acrylic", imgUrl: "9e705cdc-a594-4795-af84-4fe6a04ad7d6.png", status: "For Sale", price: "UGX 100,000", note: "Rustic architecture" },
-      { id: 18, title: "WATERFALL", category: "Landscape", imgUrl: "Waterfall.jpg", status: "For Sale", price: "UGX 90,000", note: "Water and motion" }
+      { id: 7, title: "CHARCOAL 08", category: "Charcoal", imgUrl: "IMG_20251126_081951_644.jpg", status: "For Sale", price: "UGX 120,000", note: "Dark tonal study" },
+      { id: 8, title: "MIXED MEDIA 09", category: "Mixed Media", imgUrl: "IMG_20251126_082018_134~3.jpg", status: "For Sale", price: "UGX 160,000", note: "Layered texture" },
+      { id: 9, title: "PENCIL 10", category: "Pencil", imgUrl: "IMG_20251126_082054_000.jpg", status: "For Sale", price: "UGX 95,000", note: "Clean pencil line" },
+      { id: 10, title: "CHARCOAL 11", category: "Charcoal", imgUrl: "IMG_20251126_082132_404~3.jpg", status: "For Sale", price: "UGX 120,000", note: "Bold shadow" },
+      { id: 11, title: "INK 12", category: "Ink", imgUrl: "IMG_20251126_082145_313.jpg", status: "For Sale", price: "UGX 110,000", note: "Fine ink detail" },
+      { id: 12, title: "GRAPHITE 13", category: "Graphite", imgUrl: "IMG_20251126_082208_469~3.jpg", status: "For Sale", price: "UGX 110,000", note: "Soft graphite" },
+      { id: 13, title: "MIXED MEDIA 14", category: "Mixed Media", imgUrl: "IMG_20251126_145641_254.jpg", status: "For Sale", price: "UGX 170,000", note: "Experimental mix" },
+      { id: 14, title: "GRAPHITE 15", category: "Graphite", imgUrl: "IMG_20251127_165645_069~2.jpg", status: "Sold", price: "Sold", note: "Collector piece" },
+      { id: 15, title: "PATH IN A FOREST", category: "Landscape", imgUrl: "20260310-190710~2.jpg", status: "For Sale", price: "UGX 90,000", note: "Nature scene" },
+      { id: 16, title: "VILLAGE HOUSE", category: "Acrylic", imgUrl: "9e705cdc-a594-4795-af84-4fe6a04ad7d6.png", status: "For Sale", price: "UGX 100,000", note: "Rustic architecture" },
+      { id: 17, title: "WATERFALL", category: "Landscape", imgUrl: "Waterfall.jpg", status: "For Sale", price: "UGX 90,000", note: "Water and motion" }
     ];
 
     // custom sort: Acrylic first
